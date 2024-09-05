@@ -37,7 +37,7 @@ int main(){
     cout<< "valor de n="<< n<<endl;
     cout <<"valor t do main: "<<t<<endl;
     //o programa roda mas se mudar algo na proxima linha na parte somar da merda.
-    cout<<"valor de t somar: "<<somar<<endl;
+    //cout<<"valor de t somar: "<<somar<<endl;
     cout << pi;
     cout<<" "<<endl;
     cout << curtir;
