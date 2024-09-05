@@ -1,4 +1,8 @@
 #include <iostream>
+#define pi 3.14;
+#define curtir "Curta esse video\n";
+//int t;
+
 
 using namespace std;
 
@@ -7,25 +11,36 @@ void inscrever(){
 
 }
 
-int somar (int num1, int num2){
+int somar (int &num1, int num2){
     int soma;
-    num1 = 3;
-    num2 = 4;
+    int t;    
+    t = 1;
     soma = num1 + num2;
+    num1 = 30;
+    num2 = 4;
+    cout<<t<<endl;
     return soma;
 }
 
 int main(){
     
-    int num1, num2;
+    int n, m;
+    int t;
+    t = 0;
 
     cout<<"Insira um numero= ";
-    cin>> num1;
+    cin>> n;
     cout<<"Insira um numero= ";
-    cin>> num2;
+    cin>> m;
 
-    cout<< somar(num1, num2)<< endl;
-    
+    cout<< somar(n, m)<< endl;
+    cout<< "valor de n="<< n<<endl;
+    cout <<"valor t do main: "<<t<<endl;
+    //o programa roda mas se mudar algo na proxima linha na parte somar da merda.
+    cout<<"valor de t somar: "<<somar<<endl;
+    cout << pi;
+    cout<<" "<<endl;
+    cout << curtir;
 
     inscrever();
 
