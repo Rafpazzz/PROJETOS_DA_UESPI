@@ -14,6 +14,8 @@ int main(){
     int x = sizeof(vet)/sizeof(int);
     cout<< "O numeros de elementos do vetor é: "<< x;
    */
+
+  
     //Alocação dinamica.
     int tamanho;
     cout << "Digite o tamanho do verto: ";
