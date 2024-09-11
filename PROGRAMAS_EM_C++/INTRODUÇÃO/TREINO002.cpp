@@ -2,18 +2,26 @@
 
 using namespace std;
 
+int main() {
+    
+    double num , valor;
+    valor = 50;
 
-int main(){
-    double largura, altura, area;
+    cout<< "Adivinhe o valor: ";
+    cin >> num;
 
-    cout <<"Informe a largura: ";
-    cin >> largura;
-    cout <<"Informe a altura: ";
-    cin>> altura;
+    while (num != valor){
+        if (num < valor){
+            cout << "insira um valor maior: ";
+            cin >> num;
+        }else{
+            cout << "Insira um valor menor: ";
+            cin >> num;
+        }
+        
+    }
 
-    area = altura *largura;
-
-    cout <<"Area: "<< area;
+    cout <<"Voce acertou o valor!";
 
     return 0;
 }
