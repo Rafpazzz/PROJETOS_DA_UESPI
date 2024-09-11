@@ -18,5 +18,7 @@ int main(){
         printf("Seu salario: %.2f", salarioFinal);
     }
 
+    printf(" ");
+
     return 0;
 }
