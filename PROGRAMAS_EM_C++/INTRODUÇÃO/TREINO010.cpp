@@ -1,30 +1,31 @@
 #include <iostream>
-#include <cmath>
 
 
-bool Primo(int num) {
-    if (num <= 1) return false;
-    if (num <= 3) return true; 
-    if (num % 2 == 0 || num % 3 == 0) return false; 
-    for (int i = 5; i * i <= num; i += 6) {
-        if (num % i == 0 || num % (i + 2) == 0) return false; 
+using namespace std;
+
+class Pessoa{
+    public:
+    string nome;
+    int idade;
+    char sexo;
+
+    void imprime(){
+        std::cout<<"Nome: "<<nome<<endl;
+        std::cout<<"Idade: "<<idade<<endl;
+        std::cout<<"Sexo: "<<sexo<<endl;
     }
-    return true;
-}
+};
 
-int main() {
-    
-    for (int i = 1; i <= 50; ++i) {
-        if (Primo(i)) {
-            std::cout << i << " ";
-        }
-        if (i>20)
-        {
-            break;
-        }
-        
-    }
-    
+
+int main(){
+    Pessoa estudante;
+
+    estudante.nome = "Rafael";
+    estudante.idade = 20;
+    estudante.sexo = 'M';
+
+    estudante.imprime();
 
     return 0;
+
 }
