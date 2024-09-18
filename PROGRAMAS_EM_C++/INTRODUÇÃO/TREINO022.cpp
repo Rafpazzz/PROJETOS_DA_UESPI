@@ -56,4 +56,5 @@ int main(){
             cout<< operacao(num1, num2, subitracao);
     }
 
+    return 0;
 }
