@@ -12,11 +12,29 @@ void func(int num){
         cont++;
     }
 
-    int arr[1];
-    arr[1]= num;
-
-    for(int i = 0; i < 1; i++){
-        
+    int *array = new int[cont];
+    
+    for(int i = 0; i < cont; i++){
+        array[i] = num % 10;
+        num /= 10;
     }
 
+    for(int i = cont-1; i>=0; --i){
+        std::cout<<"["<<array[i]<<"], ";
+    }
+
+    std::cout<<"{"<<cont<<"}";
+
+    delete[] array;
+}
+
+int main(){
+    int num;
+
+    cout<<"Informe o numero: ";
+    cin>>num;
+
+    func(num);
+
+    return 0;
 }
