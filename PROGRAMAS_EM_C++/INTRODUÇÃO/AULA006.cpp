@@ -34,7 +34,6 @@ int main(){
     //*pont3 = *pont1; pegando o valor do outro ponteiro
     //delete pont3; deletar  o enderreço do ponteiro para nao ocorrer o vazamento de memoria.
     //pont3=pont1; //pegando a endereço(referencia) do outro ponteiro
-    cout << *pont3;
 
     return 0;
 }
