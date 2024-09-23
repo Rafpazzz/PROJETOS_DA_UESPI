@@ -30,7 +30,7 @@ class indentidade{
 
 public:
     void setnome(string n){
-        this -> nome = n;
+        this->nome = n;
     }
 
     string getnome(){
