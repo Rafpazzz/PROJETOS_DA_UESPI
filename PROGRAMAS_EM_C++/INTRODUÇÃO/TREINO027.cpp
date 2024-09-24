@@ -3,7 +3,8 @@
 class No{
     public:
         int valor;
-        No* prox;
+        No* prox = nullptr;
+        No* ant = nullptr;
         
 };
 
@@ -12,7 +13,7 @@ class listaEnc1{
         No* primNo = nullptr;
 
     public:
-        
+        listaEnc1(){}
 
         void inserirFinal(int num){
                 No* novoNo = new No();
@@ -27,13 +28,22 @@ class listaEnc1{
                     }
                     bloco -> prox = novoNo;
                 }
+               /*No* novoNo = new No();
+               novoNo->valor = num;
+               if(primNo == nullptr){
+                primNo = novoNo;
+               }else{
+                    primNo->prox = novoNo;
+                    novoNo ->ant = primNo;
+                    primNo = novoNo;
+               }*/
         }
 
         void imprimirLista(){
             No* blocopercorre;
             blocopercorre = primNo;
             while(blocopercorre != nullptr){
-                std::cout<<blocopercorre -> valor<<std::endl;
+                std::cout<<blocopercorre->valor<<std::endl;
                 blocopercorre = blocopercorre->prox;
             }
         }
