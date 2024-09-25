@@ -29,15 +29,16 @@ class listaEnc4{
 
     }
 
-    bool buscaValor(int num){
+    void buscaValor(int num){
         No* buscar;
         buscar = primNo;
         while(buscar->valor != num){
             buscar = buscar->prox;
             if(buscar->valor == num){
-                std::cout<<"true ";
-                return true;
+                std::cout<<"O valor "<<num<< " foi encontrado na lista.";
                 break;
+            }else{
+                std::cout<<"O valor"<<num<< " nao foi encontrado.";
             }
         }
         
@@ -60,9 +61,9 @@ int main(){
     numero.inserirFinal(30);
     numero.inserirFinal(40);
 
-    std::cout<<numero.buscaValor(30)<<std::endl;
-
     numero.percorreLista();
+
+    numero.buscaValor(30);
 
     return 0;
 }

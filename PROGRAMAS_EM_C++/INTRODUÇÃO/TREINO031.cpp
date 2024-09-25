@@ -32,9 +32,7 @@ class listaEnc5{
             inserir->valor = num;
 
             if(primNo == nullptr){
-                std::cout<<"Lista vazia";
-                delete inserir;
-                inserir = nullptr;
+                primNo = inserir;
                 return;
             }
 
