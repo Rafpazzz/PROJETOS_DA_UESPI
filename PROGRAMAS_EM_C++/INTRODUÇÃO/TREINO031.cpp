@@ -30,15 +30,37 @@ class listaEnc5{
         void inseriMeio(int num, int posicao){
             No* inserir = new No();
             inserir->valor = num;
+
+            if(primNo == nullptr){
+                std::cout<<"Lista vazia";
+                delete inserir;
+                inserir = nullptr;
+                return;
+            }
+
             No* percorre;
             percorre = primNo;
-            while(percorre->valor!=posicao){
+
+            while(percorre!=nullptr && percorre->valor!=posicao){
                 percorre = percorre->prox;
                 
             }
-            percorre= inserir;
+
+            if(percorre == nullptr){
+                std::cout<<"A posição noafoi encontrada";
+                delete inserir;
+                inserir = nullptr;
+                return;
+            }
+            
             inserir->prox = percorre->prox;
-            inserir->ant =percorre->ant;
+            inserir->ant =percorre;
+
+            if(percorre->prox != nullptr){
+                percorre->prox->ant = inserir;
+            }
+
+            percorre->prox = inserir;
         }
 
         void imprimir(){

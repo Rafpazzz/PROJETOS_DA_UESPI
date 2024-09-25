@@ -25,6 +25,7 @@ class listaEnc4{
                 bloco = bloco->prox;
             }
             bloco->prox = noAtual;
+            noAtual->ant = bloco;
         }
 
     }
@@ -39,8 +40,8 @@ class listaEnc4{
        
         while(atual != nullptr){
             percorre = atual->ant;
-            atual -> ant = atual -> prox;
-            atual -> prox = percorre;
+            atual->ant = atual->prox;
+            atual->prox = percorre;
             atual = atual->ant;
         }
 
