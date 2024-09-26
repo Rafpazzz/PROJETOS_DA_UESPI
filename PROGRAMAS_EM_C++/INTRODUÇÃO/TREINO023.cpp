@@ -1,39 +1,37 @@
 #include <iostream>
-#define pi 3.14;
+
 
 using namespace std;
 
-void areaCir(double raio){
-    double area;
-
-    area = raio*2*pi;
-    cout<<"AREA: "<< area;
+double areaCir(double raio, double pi){
+    return pi*raio*raio;
 }
 
-void areaQuad(int l1, int l2){
-    double area;
+double areaQuad(double l1, double l2){
+    return l1*l2;
+}
 
-    area= l1*l2;
-    cout<<"AREA: "<< area;
+double opera(double num1, double num2, double (*apontaFuncao)(double, double)){
+        return apontaFuncao(num1, num2);
 }
 
 int main(){
-    char* pont = new char[50];
-    double raio, l1, l2;
+    double pi, raio, lado1, lado2;
+    string objeto;
 
-    cout<<"Deseja calcular a area do circulo ou quadrado: ";
-    cin>>pont;
+    cout<<"O que deseja calcular: area Circulo ou area Quadrado."<<endl;
+    cin>> objeto;
 
-    if(*pont ='circulo'){
-        cout<<"Informe o raio do circulo: ";
+    if(objeto == "circulo" || objeto == "Circulo"){
+        cout<<"informe o valor do raio: "<<endl;
         cin>>raio;
-        areaCir(raio);
+        pi = 3.14;
+        cout<<"Area: "<< opera(raio, pi, areaCir);
     }else{
-        cout<<"Informe o lado 1: ";
-        cin>>l1;
-        cout<<"Informe o lado 2: ";
-        cin>>l2;
-        areaQuad(l1,l2);
+        cout<<"Informe o lado do seu quadrado: "<<endl;
+        cin>>lado1;
+        lado2 = lado1;
+        cout<<"Area: "<< opera(lado1,lado2,areaQuad);
     }
 
 }
