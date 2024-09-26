@@ -67,7 +67,7 @@ int main(){
     numero.inserirFinal(30);
     numero.inserirFinal(40);
 
-    numero.remove();
+     numero.remove();
 
     numero.percorreLista();
 
