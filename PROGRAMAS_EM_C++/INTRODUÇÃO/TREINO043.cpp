@@ -21,7 +21,7 @@ class listaEnc9{
             }else{
                 No* bloco;
                 bloco = primNo;
-                while(bloco->prox !=nullptr){
+                while(bloco->prox != nullptr){
                     bloco = bloco->prox;
                 }
                 bloco->prox = novoNo;
@@ -29,43 +29,55 @@ class listaEnc9{
             }
         }
 
-       void ordena(listaEnc9 &list){
+       void ordena(){
             No* verifica = primNo;
-            No* listaPar;
-            No* listaImpar;
+            No* listaPar = nullptr;
+            No* listaImpar = nullptr;
+            No* ultimoPar = nullptr;
+            No* ultimoImpar = nullptr;
 
             if(primNo == nullptr){
                 std::cout<<"Lista sem valor";
             }
 
-            if(primNo!=nullptr){
-                if(primNo->valor % 2 == 0){
-                     listaPar = primNo;
+            while(verifica != nullptr){
+                if(verifica->valor % 2 == 0){
+                    No* novoPar = new No();
+                    novoPar->valor = verifica->valor;
+                    if(listaPar == nullptr){
+                        listaPar = novoPar;
+                        ultimoPar = novoPar;
+                    }else{
+                        ultimoPar->prox = novoPar;
+                        ultimoPar = novoPar;
+                    }
                 }else{
-                     listaImpar = primNo;
+                    No* novoImpar = new No();
+                    novoImpar->valor = verifica->valor;
+                    if(listaImpar == nullptr){
+                        listaImpar = novoImpar;
+                        ultimoImpar = novoImpar;
+                    }else{
+                        ultimoImpar->prox = novoImpar;
+                        ultimoImpar = novoImpar;
+                    }
                 }
-            }
 
-            while(verifica->prox != nullptr){
                 verifica = verifica->prox;
-                if(verifica->valor %2 == 0 ){
-                    listaPar->prox = verifica; 
-                }else{
-                    listaImpar->prox = verifica;
-                }
             }
             
             std::cout<<"Lista valores pares: "<<std::endl;
 
-            while(listaPar != nullptr){
-                
-                std::cout<<listaPar->valor<<std::endl;
-                listaPar = listaPar->prox;
+            No* percorrePar = listaPar;
+            while (percorrePar != nullptr) {
+                std::cout << percorrePar->valor << std::endl;
+                percorrePar = percorrePar->prox;
             }
             
             std::cout<<"Lista valores impares: "<<std::endl;
 
-            while(listaImpar != nullptr){
+            No* percorreImpar = listaImpar;
+            while(percorreImpar != nullptr){
                 
                 std::cout<<listaImpar->valor<<std::endl;
                 listaImpar = listaImpar->prox;
@@ -83,5 +95,5 @@ int main(){
     numero.inseriLista(3);
     numero.inseriLista(4);
 
-    numero.ordena(numero);
+    numero.ordena();
 }
