@@ -36,18 +36,38 @@ class listaDupEnc1{
             }
         }
 
-       void removNo(){
+       void insereNo(int num, int idx){
             No* busca = primNo;
+            No* insere = new No();
+            insere->valor = num;
 
             if(primNo == nullptr && ultiNo == nullptr){
-                std::cout<<"Lista sem valores.";
+                primNo = insere;
+                ultiNo = insere;
+                return;
             }
 
-            
-            primNo = busca->prox;
-            busca->prox->ant = nullptr;
-            delete busca;
-            busca = nullptr;
+            while(busca != nullptr && busca->valor != idx){
+                busca = busca->prox;
+            }
+
+           if(busca == nullptr){
+                std::cout<<"Posicao invalida.";
+                delete insere;
+                return;
+           }
+           
+           insere->prox = busca;
+           insere->ant = busca->ant;
+           
+           if(busca->ant != nullptr){
+                busca->ant->prox = insere;
+           }else{
+                primNo = insere;
+           }
+
+           busca->ant = insere;
+           
        }
 
         void imprimir(){
@@ -68,7 +88,7 @@ int main(){
     numero.inserirFinal(30);
     numero.inserirFinal(40);
 
-    numero.removNo();
+    numero.insereNo(50, 20);
 
     numero.imprimir();
 }
