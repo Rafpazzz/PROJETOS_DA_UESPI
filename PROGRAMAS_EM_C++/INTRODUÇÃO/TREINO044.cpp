@@ -101,6 +101,50 @@ class listaDupEnc1{
                 imprimiTudo = imprimiTudo->prox;
             }
         }
+
+        void buscaValor(int num){
+            No* busca = primNo;
+
+            if(primNo == nullptr){
+                std::cout<<"Lista vazia.";
+                delete busca;
+                busca = nullptr;
+                return;
+            }
+
+            while(busca->prox != nullptr && busca->valor != num){
+                busca = busca->prox;
+                if(busca == nullptr){
+                    std::cout<<"Valor nao encjtrado ou posição invalida.";
+                    return;
+                }
+            }
+
+            std::cout<<"O valor escolhido é: "<< busca->valor;
+        }
+
+        void removeDupla(){
+            No* tartaruga = primNo;
+            No* lebre = primNo;
+
+            if(primNo == nullptr){
+                std::cout<<"Lista vazia.";
+                delete tartaruga;
+                delete lebre;
+                return;
+            }
+
+            do{
+                lebre = lebre->prox->prox;
+                tartaruga = tartaruga->prox;
+                if(lebre->valor == tartaruga->valor){
+                    tartaruga->ant->prox = lebre;
+                    lebre->ant = tartaruga->ant;
+                    delete tartaruga;
+                    tartaruga=lebre->ant;
+                }
+            }while(lebre != nullptr && tartaruga != nullptr);
+        }
        
 
         void imprimir(){
@@ -120,15 +164,16 @@ int main(){
 
     lista1.inserirFinal(10);
     lista1.inserirFinal(20);
-    lista1.inserirFinal(30);
+    lista1.inserirFinal(20);
     lista1.inserirFinal(40);
 
-    lista2.inserirFinal(50);
-    lista2.inserirFinal(60);
-    lista2.inserirFinal(70);
-    lista2.inserirFinal(80);
+    lista1.inserirFinal(50);
+    lista1.inserirFinal(60);
+    lista1.inserirFinal(60);
+    lista1.inserirFinal(80);
 
-    junta.concatenaLista(lista1, lista2);
+    lista1.removeDupla();
+    lista1.imprimir();
 
     
 }
