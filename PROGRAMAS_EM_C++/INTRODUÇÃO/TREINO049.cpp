@@ -28,15 +28,31 @@ class listaCir1{
             }
         }
 
-       
+       void inverteNo(){
+            No* atual = primNo;
+            No* finall = ultmNo;
+            No* proximo = nullptr;
+            No* anterior = nullptr;
 
-        void imprimi(){
-            No* percorre = primNo;
+            do{
+                proximo = atual->prox;
+                atual->prox = anterior;
+                anterior = atual;
+                atual = proximo;
+            }while(atual!=primNo);
+
+            primNo->prox = anterior;
+            anterior = primNo;
+            ultmNo = finall;
+
+            ultmNo->prox = primNo;
+
+             No* percorre = primNo;
             do{
                 std::cout<<percorre->valor<<std::endl;
                 percorre= percorre->prox;
             }while(percorre!=primNo);
-        }
+       }
 
 
 };
@@ -50,9 +66,8 @@ int main(){
     lista1.inserirFinal(40);
     lista1.inserirFinal(50);
 
-    lista1.inverter();
+    lista1.inverteNo();
 
-    lista1.imprimi();
 
     return 0;
 }
