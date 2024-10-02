@@ -29,24 +29,9 @@ class listaEnc6{
             }
         }
 
-        void inseriFinal2(int num){
-            No* noAtual = new No();
-            noAtual->valor = num;
-            if(primNo == nullptr){
-                primNo = noAtual;
-            }else{
-                No* bloco;
-                bloco = primNo;
-                while(bloco->prox != nullptr){
-                    bloco = bloco->prox;
-                }
-                bloco->prox = noAtual;
-                noAtual->ant = bloco;
-            }
-        }
-
-       void fusaoLista(){
-
+       listaEnc6 fusaoLista(listaEnc6 list1, listaEnc6 list2){
+            No* blocoAtual;
+            blocoAtual = list1.primNo;
        }
 
         void imprimi(){
@@ -62,18 +47,11 @@ class listaEnc6{
 
 int main(){
     listaEnc6 numero;
+    listaEnc6 lisOrdenada;
 
     numero.inseriFinal1(20);
-    numero.inseriFinal1(30);
-    numero.inseriFinal1(40);
-    numero.inseriFinal1(40);
-
-   
-
-    numero.inseriFinal2(50);
-    numero.inseriFinal2(60);
-    numero.inseriFinal2(70);
-    numero.inseriFinal2(80);
+    
+    lisOrdenada.inseriFinal1(10);
 
     numero.imprimi();
 
