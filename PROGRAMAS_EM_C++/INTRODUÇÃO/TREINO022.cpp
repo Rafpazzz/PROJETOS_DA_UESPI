@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-typedef int (*funcpont)(int, int);
+//typedef int (*funcpont)(int, int);
 
 int soma(int num1, int num2){
 
@@ -21,13 +21,13 @@ int multiplicacao(int num1, int num2){
 int divisao(int num1, int num2){
     if(num2 == 0){
         cout<<"O peração invalida.";
-        break;
+        return 0;
     }
     return num1 / num2;
 }
 
-int operacao(int num1, int num2, funcpont pont){
-    return pont(num1,num2);
+int operacao(int num1, int num2, int (*pont)(int, int)){
+    return pont(num1, num2);
 }
 
 int main(){
@@ -53,7 +53,7 @@ int main(){
             break;
         
         case '/':
-            cout<< operacao(num1, num2, subitracao);
+            cout<< operacao(num1, num2, divisao);
     }
 
     return 0;
