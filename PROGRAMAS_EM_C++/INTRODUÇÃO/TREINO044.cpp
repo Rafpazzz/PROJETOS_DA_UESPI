@@ -55,8 +55,6 @@ class listaDupEnc1{
         }
 
         void listaVazia(){
-            No* verifica = primNo;
-
             if(primNo == nullptr){
                 std::cout<<"Lista nao possui elementos.";
             }
@@ -65,11 +63,10 @@ class listaDupEnc1{
         void invereteLista(){
             No* percorre = ultiNo;
 
-            while(percorre != primNo){
+            while(percorre != nullptr){
                 std::cout<<percorre->valor<<std::endl;
                 percorre = percorre->ant;
             }
-            std::cout<<primNo->valor;
         }
 
         No* getPrimeiroNo(){
@@ -148,11 +145,11 @@ class listaDupEnc1{
        
 
         void imprimir(){
-            No* percorre = ultiNo;
+            No* percorre = primNo;
 
             while(percorre != nullptr){
                 std::cout<<percorre->valor<<std::endl;
-                percorre = percorre->ant;
+                percorre = percorre->prox;
             }
         }
 };
@@ -172,8 +169,8 @@ int main(){
     lista1.inserirFinal(60);
     lista1.inserirFinal(80);
 
-    lista1.removeDupla();
-    lista1.imprimir();
+    lista1.invereteLista();
+    //lista1.imprimir();
 
     
 }

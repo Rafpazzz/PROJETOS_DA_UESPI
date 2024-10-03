@@ -4,7 +4,6 @@ class No{
     public:
         int valor;
         No* prox;
-        No* ant;
 };
 
 class listaEnc6{
@@ -25,7 +24,7 @@ class listaEnc6{
                     bloco = bloco->prox;
                 }
                 bloco->prox = noAtual;
-                noAtual->ant = bloco;
+
             }
         }
 
@@ -42,13 +41,8 @@ class listaEnc6{
                 No* proxNo = atual->prox;
                 if(atual->valor == proxNo->valor){
                     atual->prox = proxNo->prox;
-                    if(proxNo->prox != nullptr){
-                        proxNo->prox->ant = atual;
-                    }
-
                     delete proxNo;
                     proxNo=nullptr;
-                    
                 }else{
                     atual = atual->prox;
                 }

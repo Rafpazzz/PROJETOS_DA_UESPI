@@ -24,7 +24,6 @@ class listaEnc8{
                     bloco = bloco->prox;
                 }
                bloco->prox = novoNo;
-               ultimo = novoNo;
                 //ultimo->prox = novoNo;
                // novoNo->prox = primNo;
                 //ultimo = novoNo;

@@ -39,14 +39,14 @@ class listaDuplaEnc2{
             bool verifica = true;
 
             
-            while(checagemCima != nullptr && checagemBaixo != nullptr && checagemCima != checagemBaixo && checagemCima->ant != checagemBaixo){
+            while(checagemCima != nullptr && checagemBaixo != nullptr){
                  if (checagemCima->valor != checagemBaixo->valor) {
                     verifica = false;
                     break;
                 }
 
                 checagemCima = checagemCima->prox;
-                checagemBaixo = checagemBaixo->prox;
+                checagemBaixo = checagemBaixo->ant;
             }
             
             if(verifica){

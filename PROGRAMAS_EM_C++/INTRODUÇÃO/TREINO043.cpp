@@ -4,13 +4,11 @@ class No{
     public:
         int valor;
         No* prox = nullptr;
-        No* ant = nullptr;
 };
 
 class listaEnc9{
     private:
         No* primNo = nullptr;
-        No* ultimo = nullptr;
 
     public:
         void inseriLista(int num){
@@ -25,7 +23,6 @@ class listaEnc9{
                     bloco = bloco->prox;
                 }
                 bloco->prox = novoNo;
-                ultimo = novoNo;
             }
         }
 
@@ -94,6 +91,12 @@ int main(){
     numero.inseriLista(2);
     numero.inseriLista(3);
     numero.inseriLista(4);
+    numero.inseriLista(5);
+    numero.inseriLista(6);
+    numero.inseriLista(7);
+    numero.inseriLista(8);
+    numero.inseriLista(9);
+    numero.inseriLista(10);
 
     numero.ordena();
 }

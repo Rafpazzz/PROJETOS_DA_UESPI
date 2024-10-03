@@ -33,33 +33,37 @@ class listaDuplaEnc2{
             }
         }
 
-       void separaLista(int num){
-            No* recebe = primNo;
+        No* getPrimeiroNo(){
+            return primNo;
+        }
 
-            if(primNo == nullptr && ultiNo == nullptr){
+       void separaLista(int num, listaDuplaEnc2 &list){
+            No* recebe = list.getPrimeiroNo();
+            int n = 1;
+
+            if(list.getPrimeiroNo() == nullptr){
                 std::cout<<"Lista sem valor";
                 return;
             }
 
-            No* list1 = primNo;
-            
             std::cout<<"lista 1:"<<std::endl;
 
-            while(recebe->valor < num){
+            while(n <= num){
+                std::cout<<recebe->valor<<std::endl;
                 recebe = recebe->prox;
-                std::cout<<list1->valor<<std::endl;
-                list1 = recebe;
+                n++;
             }
-
             No* list2 = recebe;
+            list2->ant= nullptr;
 
             std::cout<<"lista 2: "<<std::endl;
 
-            while(recebe!=nullptr){
-                recebe = recebe->prox;
+            while(list2!=nullptr){
                 std::cout<<list2->valor<<std::endl;
-                list2 = recebe;
+                list2 = list2->prox;
             }
+
+            recebe->prox = nullptr;
 
        }
 
@@ -75,6 +79,7 @@ class listaDuplaEnc2{
 
 int main(){
     listaDuplaEnc2 numero;
+    listaDuplaEnc2 separa;
 
     numero.inseriFinal(1);
     numero.inseriFinal(2);
@@ -87,7 +92,7 @@ int main(){
     numero.inseriFinal(9);
     numero.inseriFinal(10);
 
-    numero.separaLista(6);
+    separa.separaLista(6, numero);
 
     //numero.imprimir();
 }

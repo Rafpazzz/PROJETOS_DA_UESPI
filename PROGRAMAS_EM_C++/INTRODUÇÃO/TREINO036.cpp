@@ -29,11 +29,6 @@ class listaEnc6{
             }
         }
 
-<<<<<<< HEAD
-       listaEnc6 fusaoLista(listaEnc6 list1, listaEnc6 list2){
-            No* blocoAtual;
-            blocoAtual = list1.primNo;
-=======
         No* getPrimeiro(){
             return primNo;
         }
@@ -75,7 +70,6 @@ class listaEnc6{
             }
 
 
->>>>>>> c58b38e52fd1e2146888a91f56516a2055096d36
        }
 
        void imprimir(){
@@ -90,14 +84,6 @@ class listaEnc6{
 };
 
 int main(){
-<<<<<<< HEAD
-    listaEnc6 numero;
-    listaEnc6 lisOrdenada;
-
-    numero.inseriFinal1(20);
-    
-    lisOrdenada.inseriFinal1(10);
-=======
     listaEnc6 lista1;
     listaEnc6 lista2;
     listaEnc6 junta;
@@ -113,7 +99,6 @@ int main(){
     lista2.inseriFinal1(70);
 
     junta.fusaoLista(lista1,lista2);
->>>>>>> c58b38e52fd1e2146888a91f56516a2055096d36
 
     junta.ordenaLista(lista1, lista2, junta.ordenaLista);
 
