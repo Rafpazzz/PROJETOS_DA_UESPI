@@ -52,14 +52,9 @@ class listaEnc5{
             }
             
             inserir->prox = percorre->prox;
-            inserir->ant =percorre;
-
-            if(percorre->prox != nullptr){
-                percorre->prox->ant = inserir;
-            }
 
             percorre->prox = inserir;
-        }
+    }
 
         void imprimir(){
             No* percorreLista;
@@ -80,7 +75,7 @@ class listaEnc5{
         numero.inseriFinal(40);
         numero.inseriFinal(50);
         
-        numero.inseriMeio(60, 50);
+        numero.inseriMeio(60, 30);
 
         numero.imprimir();
 

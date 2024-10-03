@@ -25,7 +25,6 @@ class listaEnc4{
                 bloco = bloco->prox;
             }
             bloco->prox = noAtual;
-            noAtual->ant = bloco;
         }
 
     }
@@ -40,12 +39,15 @@ class listaEnc4{
             primNo = nullptr;
             return;
         }
-        No* remove = primNo;
-        while(remove->prox != nullptr){
-            remove = remove->prox;
+        No* remove ;
+        No* atual = primNo;
+        while(atual->prox != nullptr){
+            remove = atual;
+            atual = atual->prox;
         }
-        remove->ant->prox = nullptr;
-        delete remove;
+
+        remove->prox = nullptr;
+        delete atual;
     
     }
 

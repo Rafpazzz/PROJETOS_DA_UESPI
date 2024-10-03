@@ -51,8 +51,10 @@ class ListCir4{
 
         void transformar(){
             No* atual = ultmNo;
-            ataul->prox = nullptr;
+            atual->prox = nullptr;
         }
+
+
 
         void imprimi(){
             No* percorre = primNo;
@@ -73,6 +75,8 @@ int main(){
     numero.inserir(4);
     numero.inserir(5);
 
-    numero.noMedio();
+    numero.transformar();
+
+    numero.imprimi();
 
 }

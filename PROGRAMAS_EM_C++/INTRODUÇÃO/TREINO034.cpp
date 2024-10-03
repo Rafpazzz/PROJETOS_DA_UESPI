@@ -25,7 +25,6 @@ class listaEnc6{
                     bloco = bloco->prox;
                 }
                 bloco->prox = noAtual;
-                noAtual->ant = bloco;
             }
         }
 

@@ -20,12 +20,9 @@ class listaEnc2{
                 primNo = novoNo;
             }else{
                 No* bloco;
-                bloco = primNo;
-                if(bloco->ant == nullptr){
-                    bloco->ant = novoNo;
-                    novoNo->prox = bloco;
-                    primNo = novoNo;
-                }
+                bloco = novoNo;
+                bloco->prox = primNo;
+                primNo = bloco;   
             } 
             
         }

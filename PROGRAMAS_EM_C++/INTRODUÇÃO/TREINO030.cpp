@@ -5,7 +5,6 @@ class No{
 
     int valor;
     No* prox;
-    No* ant;
 };
 
 class listaEnc4{

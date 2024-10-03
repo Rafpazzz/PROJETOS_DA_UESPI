@@ -5,7 +5,6 @@ class No{
 
     int valor;
     No* prox;
-    No* ant;
 };
 
 class listaEnc4{
@@ -25,7 +24,6 @@ class listaEnc4{
                 bloco = bloco->prox;
             }
             bloco->prox = noAtual;
-            noAtual->ant = bloco;
         }
 
     }
@@ -36,19 +34,17 @@ class listaEnc4{
             return;
         }
         No* atual = primNo;
-        No* percorre = nullptr;
-       
+        No* proximo = nullptr;
+        No* anterior = nullptr;
+
         while(atual != nullptr){
-            percorre = atual->ant;
-            atual->ant = atual->prox;
-            atual->prox = percorre;
-            atual = atual->ant;
+            proximo = atual->prox;
+            atual->prox = anterior;
+            anterior = atual;
+            atual = proximo;
         }
 
-        if(percorre != nullptr){
-            primNo = percorre->ant;
-        }
-        
+        primNo = anterior;
     }
 
     void percorreLista(){

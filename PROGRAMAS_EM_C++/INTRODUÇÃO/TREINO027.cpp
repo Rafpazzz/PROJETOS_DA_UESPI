@@ -28,15 +28,6 @@ class listaEnc1{
                     }
                     bloco -> prox = novoNo;
                 }
-               /*No* novoNo = new No();
-               novoNo->valor = num;
-               if(primNo == nullptr){
-                primNo = novoNo;
-               }else{
-                    primNo->prox = novoNo;
-                    novoNo ->ant = primNo;
-                    primNo = novoNo;
-               }*/
         }
 
         void imprimirLista(){

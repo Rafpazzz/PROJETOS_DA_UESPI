@@ -20,26 +20,43 @@ class listaEnc3{
             if(primNo == nullptr){
                 primNo = noAtual;
             }else{
-                primNo->ant = noAtual;
-                noAtual->prox = primNo;
-                primNo=noAtual;
+                No* bloco;
+                bloco = noAtual;
+                bloco->prox = primNo;
+                primNo = bloco;
             }
         }
 
-        void listadelete(int num){
-            No* novoNo;
-            novoNo = primNo;
-            if(novoNo == nullptr){
-                std::cout<<"Lista sem valores";
-            } 
-            while(novoNo->valor != num){
-                novoNo = novoNo->prox;            
-            }
-            novoNo->ant->prox=novoNo->prox;
-            novoNo->prox->ant=novoNo->ant;
-            delete novoNo;
-            novoNo = nullptr;
+        No* getPrimeiroNo(){
+            return primNo;
+        }
 
+        void listadelete(int num){
+            No* atual = primNo;
+            No* anterior = nullptr;
+            
+            if(atual == nullptr){
+                std::cout<<"LIsta vazia";
+                return;
+            }
+            
+            while(atual->prox != nullptr && atual->valor != num){
+                anterior = atual;
+                atual = atual->prox;
+            }
+
+            if(atual == nullptr){
+                std::cout<<"Valor nao encontrado";
+                return;
+            }
+
+            if(anterior == nullptr){
+                primNo = atual->prox;
+            }else{
+                anterior->prox = atual->prox;
+            }
+
+            delete atual;
         }
 
         void imprimir(){
