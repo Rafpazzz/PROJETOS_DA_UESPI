@@ -4,7 +4,6 @@ class No{
     public:
         int valor;
         No* prox;
-        No* ant;
 };
 
 class listaEnc6{
@@ -25,7 +24,6 @@ class listaEnc6{
                     bloco = bloco->prox;
                 }
                 bloco->prox = noAtual;
-                noAtual->ant = bloco;
             }
         }
 
@@ -44,10 +42,6 @@ class listaEnc6{
                 }
 
                 junta->prox = list2.getPrimeiro();
-
-                if (list2.getPrimeiro() != nullptr) {
-                    list2.getPrimeiro()->ant = junta;
-                }
             }
             
        }

@@ -13,6 +13,8 @@ class ListCir4{
     
     public:
 
+        ListCir4(){}
+
         void inserir(int num){
             No* novoNo = new No();
             novoNo->valor = num;

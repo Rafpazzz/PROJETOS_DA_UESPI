@@ -61,12 +61,18 @@ class listaDupEnc1{
         }
 
         void invereteLista(){
-            No* percorre = ultiNo;
+            No* atual = primNo;
+            No* proximo = nullptr;
+            No* anterior = nullptr;
 
-            while(percorre != nullptr){
-                std::cout<<percorre->valor<<std::endl;
-                percorre = percorre->ant;
+            while(atual != nullptr){
+                proximo = atual->prox;
+                atual->prox = anterior;
+                anterior = atual;
+                atual = proximo;
             }
+
+            primNo = anterior;
         }
 
         No* getPrimeiroNo(){

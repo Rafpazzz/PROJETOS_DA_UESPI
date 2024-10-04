@@ -32,21 +32,33 @@ class listaCir1{
             return primNo;
         }
 
+        No* getUltimoNo(){
+            return ultmNo;
+        }
+
         void junstaLiasta(listaCir1 list1, listaCir1 list2){
-            No* perocorre = list1.getPrimeiroNo();
+            No* perocorre = list1.getUltimoNo();
+            perocorre->prox = nullptr;
+            No* primieroList1 = list1.getPrimeiroNo();
 
+            No* perocorreLIST2 = list2.getUltimoNo();
+            perocorreLIST2->prox = nullptr;
+            No* primeiroList2 = list2.getPrimeiroNo();
+
+            perocorre->prox = primeiroList2;
+            perocorreLIST2->prox = primieroList1;
+
+            primNo = primieroList1;
+            ultmNo = perocorreLIST2;
+        }
+
+        void imprimir(){
+            No* percorre = primNo;
 
             do{
-                std::cout<<perocorre->valor<<std::endl;
-                perocorre = perocorre->prox;
-            }while(perocorre!=list1.getPrimeiroNo());
-
-             No* perocorreLIST2 = list2.getPrimeiroNo();
-            do{
-                std::cout<<perocorreLIST2->valor<<std::endl;
-                perocorreLIST2 = perocorreLIST2->prox;
-            }while(perocorreLIST2!= list2.getPrimeiroNo());
-            
+                std::cout<<percorre->valor<<std::endl;
+                percorre = percorre->prox;
+            }while(percorre!=primNo);
         }
 
 
@@ -70,6 +82,8 @@ int main(){
     lista2.inserirFinal(100);
 
     junta.junstaLiasta(lista1, lista2);
+
+    junta.imprimir();
 
     return 0;
 }

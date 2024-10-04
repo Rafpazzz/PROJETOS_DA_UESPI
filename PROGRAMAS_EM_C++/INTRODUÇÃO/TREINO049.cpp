@@ -31,7 +31,6 @@ class listaCir1{
 
        void inverteNo(){
             No* atual = primNo;
-            No* finall = ultmNo;
             No* proximo = nullptr;
             No* anterior = nullptr;
 

@@ -72,7 +72,7 @@ class listaCir1{
             }
 
             No* finalList2 = list2;
-            finalList2 = list1;
+            finalList2->prox = list1->prox;
             finalList1->prox = primNo;
             
         }

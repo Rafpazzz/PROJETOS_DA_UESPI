@@ -62,7 +62,7 @@ class ListCir4{
                     std::cout<<"Lista circular";
                     break;
                 }
-            }while(atual != nullptr);
+            }while(atual->prox != nullptr);
 
             atual->prox = primNo;
 
