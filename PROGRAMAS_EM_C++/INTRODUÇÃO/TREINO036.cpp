@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 class No{
     public:
@@ -11,10 +12,12 @@ class listaEnc6{
         No* primNo = nullptr;
     
     public:
+    listaEnc6(){}
 
         void inseriFinal1(int num){
             No* noAtual = new No();
             noAtual->valor = num;
+
             if(primNo == nullptr){
                 primNo = noAtual;
             }else{
@@ -46,25 +49,46 @@ class listaEnc6{
             
        }
 
-       void ordenaLista(listaEnc6 list1, listaEnc6 list2, void (*pont)(listaEnc6,listaEnc6)){
-            if (primNo == nullptr || primNo->prox == nullptr) {
-                std::cout << "Lista vazia ou com apenas um nó.\n";
+        void ordena(){
+            No *atual = primNo;
+            No *anterior = nullptr;
+            No *proximo = atual->prox;
+            No *temp = atual->prox; //variavel de percorrer
+
+            if(primNo == nullptr || atual->prox != nullptr){
+                 cout << "" << endl;
                 return;
             }
 
-            No* comparar = primNo;
-            No* segunte = comparar->prox;
-            while(comparar != nullptr && segunte!=nullptr){
-                if(comparar->valor > comparar->prox->valor){
-                    segunte= comparar;
-                    segunte->ant = comparar->prox;
-                    comparar->prox->ant = nullptr;
+            while(proximo->prox != nullptr){
+                if(atual->valor > proximo->valor){
+                    anterior = proximo->prox;
+                    atual->prox = anterior;
+                    proximo->prox = atual;
+                    No *novoPrimeiro = proximo;
+                    primNo = novoPrimeiro;
                 }
-            
+                
+                proximo = proximo->prox;
             }
 
+            while(temp->prox != nullptr){
+                temp = temp->prox;
+                while(atual->prox != nullptr){
+                    atual = atual->prox;
 
-       }
+                    if(atual->valor > temp->valor){
+                        anterior = temp->prox;
+                        temp->prox = atual;
+                        atual->prox = anterior;
+                        atual = anterior;
+                    }
+                
+                }
+                 
+            }
+        }
+    
 
        void imprimir(){
             No* percorre;
@@ -74,6 +98,7 @@ class listaEnc6{
                 percorre = percorre->prox;
              }
         }
+        
 
 };
 
@@ -82,21 +107,22 @@ int main(){
     listaEnc6 lista2;
     listaEnc6 junta;
 
-    lista1.inseriFinal1(10);
-    lista1.inseriFinal1(50);
-    lista1.inseriFinal1(40);
-    lista1.inseriFinal1(30);
+    lista1.inseriFinal1(2);
+    lista1.inseriFinal1(4);
+    lista1.inseriFinal1(3);
+    lista1.inseriFinal1(1);
 
-    lista2.inseriFinal1(80);
-    lista2.inseriFinal1(20);
-    lista2.inseriFinal1(60);
-    lista2.inseriFinal1(70);
+   // lista2.inseriFinal1(80);
+    //lista2.inseriFinal1(20);
+   // lista2.inseriFinal1(60);
+    //lista2.inseriFinal1(70);
 
-    junta.fusaoLista(lista1,lista2);
+    //junta.fusaoLista(lista1,lista2);
 
-    junta.ordenaLista(lista1, lista2, junta.ordenaLista);
+    lista1.ordena();
 
-    junta.imprimir();
+    lista1.imprimir();
 
     return 0;
 }
+
