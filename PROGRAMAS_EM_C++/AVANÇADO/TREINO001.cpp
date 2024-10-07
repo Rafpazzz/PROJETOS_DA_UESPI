@@ -6,6 +6,7 @@ class ArrayList{
         int N;
         int* list;
         bool erro;
+        
 
         void contrutor(){
             this->list = new int[MAX];

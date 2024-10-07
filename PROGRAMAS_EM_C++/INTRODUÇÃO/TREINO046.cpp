@@ -53,6 +53,7 @@ class listaDuplaEnc2{
                 recebe = recebe->prox;
                 n++;
             }
+            
             No* list2 = recebe;
             list2->ant= nullptr;
 
