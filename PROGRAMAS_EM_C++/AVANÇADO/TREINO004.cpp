@@ -1,15 +1,51 @@
 #include <iostream>
 #include <string>
 
-class Prato{
-    public:
-        bool sujo;
-};
-
 class Node{
     public:
-        Prato value;
+        int value;
         Node *next;
+};
+
+class No{
+    public:
+
+    int valor;
+    No* prox;
+};
+
+class listaEnc4{
+    private: 
+        No* primNo = nullptr;
+
+    public:
+    void inserirFinal(int num){
+        No* noAtual = new No();
+        noAtual -> valor = num;
+        if(primNo == nullptr){
+            primNo = noAtual;
+        }else{
+            No* bloco;
+            bloco = primNo;
+            while (bloco->prox != nullptr){
+                bloco = bloco->prox;
+            }
+            bloco->prox = noAtual;
+        }
+
+    }
+
+    void print(){
+        No *percorre = primNo;
+        while(percorre!=nullptr){
+            std::cout<<percorre->valor<<std::endl;
+            percorre = percorre->prox;
+        }
+    }
+
+    No *getPrimNo(){
+        return primNo;
+    }
 };
 
 class Stack{
@@ -24,7 +60,7 @@ class Stack{
             return this->ptr_top == nullptr;
         }
 
-        void push(Prato data){
+        void push(int data){
             Node *newNode = new Node();
             newNode->value = data;
             if(newNode == nullptr){
@@ -37,7 +73,7 @@ class Stack{
 
         }
 
-        Prato pop(){
+        int pop(){
             erro = 0;
             if(IsEmpty()){
                 std::cout<<"Lista vazia";
@@ -50,8 +86,21 @@ class Stack{
                 return popedValue;
             
         }
+
+        int length(){
+            erro = 0;
+            int tam = 0;
+            if(IsEmpty()){
+                erro = 1;
+                return -1;
+            }
+            while(!IsEmpty()){
+                tam++;
+            }
+            return tam;
+        }
         
-        Prato top(){
+        int top(){
             erro = 0;
             if(IsEmpty()){
                 std::cout<<"Pilha vazia.";
@@ -68,35 +117,55 @@ class Stack{
             }
         }
 
-      /*  void tornaBinario(){
+       void tornaBinario(Stack* pilha){
             erro = 0;
-            if(IsEmpty()){
+            int j = pilha->length();
+            if(pilha->IsEmpty()){
                 std::cout<<"pilh vazia";
                 erro = 1;
             }
-            Node *temp = ptr_top;
-            Node *p = new Node();
-            while(temp != nullptr){
-                Node *transform = ptr_top;
-                while(transform->value%2 != 0 && transform->value%2 != 1){
-                    transform->value = transform->value/2;
-                }
-                p->value = transform->value;
-                p = p->next;
-                transform = transform->next;
-                std::cout<<p->value;
-                
+            Stack transform;
+            transform.initiaalizate();
+            int rest;
+            int num;
+
+            while(!pilha->IsEmpty()){
+                num = pilha->pop();
             }
-        }*/
+
+            do{
+                rest = num%2;
+                transform.push(rest);
+                num = num/2;
+            }while(num>0);
+
+            for(int i =0; i<j;i++)
+            pilha->push(transform.pop());
+        }
+
+        void torcaPilha(listaEnc4 *list){
+            erro = 0;
+            if(IsEmpty()){
+                erro = 1;
+                return;
+            }
+            Stack pilhaNew;
+            pilhaNew.initiaalizate();
+            No *temp = list->getPrimNo();
+            while(temp!=nullptr){
+                pilhaNew.push(temp->valor);
+            }
+        }
 };
 
-std::string reveerse(std::string str){
-    
-}
+
 
 int main(){
     Stack pilha;
     pilha.initiaalizate();
+    pilha.push(25);
+    pilha.print();
+    
     
     
 }
