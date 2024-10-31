@@ -74,7 +74,7 @@ class Pilhasec1{
                     return true;
                 }else{
                     return false;
-                }
+                }//return N == 0;
             }
 
             char top(){

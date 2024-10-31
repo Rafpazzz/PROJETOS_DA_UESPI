@@ -67,7 +67,6 @@ class Stack{
                 std::cout<<"erro de inicializaCao";
                 erro = 1;
             }
-                newNode->value = data;
                 newNode->next = this->ptr_top;
                 this->ptr_top = newNode;
 
