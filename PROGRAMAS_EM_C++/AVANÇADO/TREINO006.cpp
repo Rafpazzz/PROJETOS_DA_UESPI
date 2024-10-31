@@ -71,12 +71,12 @@ class Fila_encadeada {
                 erro = 1;
                 return -1;
             }
-            Node *aux = ptr_first;
-            int temp = aux->value;
+            Node *temp = ptr_first;
+            int aux = temp->value;
             ptr_first = ptr_first->next;
-            delete aux;
+            delete temp;
             N--;
-            return temp;
+            return aux;
 
         }
 };
