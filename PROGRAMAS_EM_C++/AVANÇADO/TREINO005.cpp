@@ -60,6 +60,71 @@ class Fila_sequencial1 {
 
 };
 
+class Fila_sequncial2 {
+    public:
+        int erro = 0;
+        int N;
+        int primeiro;
+        int ultimo;
+        int elements[MAX];
+
+        void criar() {
+            N = 0;
+            primeiro = 0;
+            ultimo = 0;
+        }
+
+        void libera() {
+
+        }
+
+        int lenght() {
+            return N;
+        }
+
+        int top() {
+            erro = 0;
+            if(N == 0){
+                erro = 1;
+                return -1;
+            }
+
+            return this->elements[primeiro];
+        }
+
+        void enqueue(int data) {
+            erro = 0;
+            if(N<MAX){
+                elements[ultimo] = data;
+                N++;
+                ultimo++;
+                if(ultimo == MAX){
+                    ultimo = 0;
+                }
+            }else{
+                erro = 1;
+                return;
+            }
+        }
+
+        int dequeue() {
+            erro = 0;
+            if(N>0) {
+                int temp = elements[primeiro];
+                primeiro++;
+                if(primeiro == MAX) {
+                    primeiro = 0;
+                }
+                N--;
+                return temp;
+            }
+
+            erro = 1;
+            return -1;
+        }
+    
+    };
+
 int main() {
     Fila_sequencial1 a;
 
