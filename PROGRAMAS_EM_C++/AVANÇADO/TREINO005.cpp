@@ -28,7 +28,7 @@ class Fila_sequencial1 {
 
         void enqueue(int data) {
             erro = 0;
-            if(N >= MAX) {
+            if(N > MAX) {
                 erro = 0;
                 return;
             }
