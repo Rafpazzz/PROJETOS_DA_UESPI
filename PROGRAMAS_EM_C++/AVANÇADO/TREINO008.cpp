@@ -234,6 +234,21 @@ public:
         
         return 1;
     }
+
+    int Calcfatorial(int p) {
+        erro = 0;
+        Stack fatorial;
+        fatorial.criar();
+        for(int i = 1; i<=p; i++) {
+            fatorial.push(i);   
+        }
+        int n = 1;
+        for(int i = 0; i<p; i++) {
+            n*=fatorial.pop();
+        }
+
+        return n;
+    }
 };
 
 int main() {
