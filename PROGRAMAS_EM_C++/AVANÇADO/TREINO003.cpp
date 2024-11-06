@@ -262,9 +262,6 @@ class Pilhasec1{
  std::string invetSting(std::string str){
                     Pilhasec1 original;
                     original.criar();
-                    Pilhasec1 reverse;
-                    std::string invertida = "";
-                    reverse.criar();
                     for(int i =0; i<str.length();i++){
                         original.push(str[i]);
                     }

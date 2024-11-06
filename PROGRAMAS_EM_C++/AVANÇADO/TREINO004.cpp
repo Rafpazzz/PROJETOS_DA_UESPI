@@ -61,6 +61,7 @@ class Stack{
         }
 
         void push(int data){
+            erro = 0;
             Node *newNode = new Node();
             newNode->value = data;
             if(newNode == nullptr){

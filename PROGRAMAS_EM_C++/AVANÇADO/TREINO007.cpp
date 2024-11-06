@@ -32,19 +32,17 @@ class Fila {
            if(N==0){
                ptr_preimeiro = novoPedido;
                ptr_ultimo = novoPedido;
-               N++;
            }else {
                 ptr_ultimo->next = novoPedido;
                 ptr_ultimo = novoPedido;
            }
-              
+           N++;
        }
        
        int processapedido() {
            erro = 0;
            if(!filaVazia()){
-               Node *temp = new Node();
-               temp = ptr_preimeiro;
+               Node *temp = ptr_preimeiro;
                ptr_preimeiro = ptr_preimeiro->next;
                int id = temp->value;
                std::cout<<"Pedido "<<id<<" finalisado.";
