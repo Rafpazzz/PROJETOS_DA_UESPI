@@ -28,9 +28,6 @@ public:
             elements[ultimo] = dado;
             ultimo++;
             N++;
-            if(ultimo == MAX) {
-                ultimo = 0;
-            }
         }else {
             erro = 1;
             return;
@@ -54,8 +51,28 @@ public:
         return elements[primeiro];
     }
 
-    int lenght() {
+    int length() {
         return N;
+    }
+    
+    void print() {
+        for(int i = 0;i<N;i++) {
+            std::cout<<elements[i]<<std::endl;
+        }
+    }
+    
+    void verifica_par() {
+        fila par;
+        par.criar();
+        while(!isEmpty()){
+            int aux = dequeue();
+            if(aux%2==0) {
+                par.enqueue(aux);
+            }
+        }
+
+        par.print();
+       
     }
 };
 
@@ -79,7 +96,7 @@ public:
 
     void push(int dado) {
         erro = 0;
-        if(isEmpty()) {
+        if(N<MAX) {
             elemnts[N] = dado;
             N++;
         }else {
@@ -182,7 +199,7 @@ public:
     void invete_fila(fila &fila) {
         Stack inverte;
         inverte.criar();
-        int tam = fila.lenght();
+        int tam = fila.length();
         for(int i = 0; i<tam; i++) {
             inverte.push(fila.dequeue());
         }
@@ -197,16 +214,39 @@ public:
         }
 
     }
+    
+    int verifica_palindromo(std::string str) {
+        Stack pilha;
+        pilha.criar();
+        
+        for(int i =0; i<str.length(); i++) {
+            pilha.push(str[i]);
+        }
+        
+        int i = 0;
+        while(i<str.length()) {
+            
+            if(pilha.pop() != str[i]) {
+                return -1;
+            } 
+            i++;
+        }
+        
+        return 1;
+    }
 };
 
 int main() {
-    Stack p;
-    fila a;
-
-    a.enqueue(1);
-    a.enqueue(2);
-    a.enqueue(3);
-
-    p.invete_fila(a);
+    fila f;
+    f.enqueue(1);
+    f.enqueue(2);
+    f.enqueue(3);
+    f.enqueue(4);
+    f.enqueue(6);
+    f.enqueue(12);
+    f.enqueue(9);
+    f.enqueue(8);
+    
+    f.verifica_par();
 }
 
