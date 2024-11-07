@@ -15,22 +15,22 @@ class Fila_encadeada {
         Node *ptr_first;
         Node *ptr_lest;
 
-        int initializate() {
+        void initializate() {
             N = 0;
             ptr_first = nullptr;
             ptr_lest = nullptr;
         }
 
         bool IsEmpty() {
-            this->N==0;
+            return this->N==0;
         }
 
-        int lenght() {
+        int length() {
             return this->N;
         }
 
         int top() {
-            erro == 0;
+            erro = 0;
             if(N == 0) {
                 erro = 1;
                 return -1;
@@ -67,7 +67,7 @@ class Fila_encadeada {
 
         int dequeue() {
             erro = 0;
-            if(IsEmpty) {
+            if(IsEmpty()) {
                 erro = 1;
                 return -1;
             }
@@ -79,4 +79,41 @@ class Fila_encadeada {
             return aux;
 
         }
+
+        void fibonacc(int p) {  
+            int p1 = 0;
+            int p2 = 1;
+            int prox;
+            enqueue(p1);
+            enqueue(p2);
+            for(int i = 2; i<p; i++) {
+                prox = p1+p2;
+                p1 = p2;
+                p2 = prox;
+                enqueue(prox);
+
+            }
+
+        }
+
+        void convercao_binario(int n) {
+            int bi;
+            while(n/2 != 1) {
+                bi = n%2;
+                n = n/2;
+                enqueue(bi);
+            }
+            enqueue(n/2);
+        }
 };
+
+int main() {
+    Fila_encadeada f;
+    f.initializate();
+    f.fibonacc(4);
+    std::cout<<f.dequeue();
+    std::cout<<f.dequeue();
+    std::cout<<f.dequeue();
+    std::cout<<f.dequeue();
+    
+}

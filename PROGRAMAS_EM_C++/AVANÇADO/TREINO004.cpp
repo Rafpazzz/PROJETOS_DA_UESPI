@@ -50,9 +50,11 @@ class listaEnc4{
 
 class Stack{
     public:
+        int N;
         Node *ptr_top;
         int erro = 0;
         void initiaalizate(){
+            this-> N = 0;
             this-> ptr_top = nullptr;
         }
 
@@ -70,6 +72,7 @@ class Stack{
             }
                 newNode->next = this->ptr_top;
                 this->ptr_top = newNode;
+                N++;
 
         }
 
@@ -88,16 +91,7 @@ class Stack{
         }
 
         int length(){
-            erro = 0;
-            int tam = 0;
-            if(IsEmpty()){
-                erro = 1;
-                return -1;
-            }
-            while(!IsEmpty()){
-                tam++;
-            }
-            return tam;
+            return this->N;
         }
         
         int top(){
@@ -156,6 +150,32 @@ class Stack{
                 pilhaNew.push(temp->valor);
             }
         }
+
+         void fibonacc(int p) {  
+            int p1 = 0;
+            int p2 = 1;
+            int prox;
+            push(p1);
+            push(p2);
+            for(int i = 2; i<p; i++) {
+                prox = p1+p2;
+                p1 = p2;
+                p2 = prox;
+                push(prox);
+
+            }
+         }
+
+         void convercao_binario(int n) {
+            int bi;
+            while(n>0) {
+                bi = n%2;
+                n = n/2;
+                push(bi);
+            }
+            
+            
+        }
 };
 
 
@@ -163,9 +183,11 @@ class Stack{
 int main(){
     Stack pilha;
     pilha.initiaalizate();
-    pilha.push(25);
-    pilha.print();
+    pilha.convercao_binario(11);
+    for(int i = 0; i<pilha.length(); i++) {
+        std::cout<<pilha.pop();
+    }
     
     
-    
+    return 0;
 }
