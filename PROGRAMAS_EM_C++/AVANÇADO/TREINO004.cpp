@@ -111,46 +111,6 @@ class Stack{
             }
         }
 
-       void tornaBinario(Stack* pilha){
-            erro = 0;
-            int j = pilha->length();
-            if(pilha->IsEmpty()){
-                std::cout<<"pilh vazia";
-                erro = 1;
-            }
-            Stack transform;
-            transform.initiaalizate();
-            int rest;
-            int num;
-
-            while(!pilha->IsEmpty()){
-                num = pilha->pop();
-            }
-
-            do{
-                rest = num%2;
-                transform.push(rest);
-                num = num/2;
-            }while(num>0);
-
-            for(int i =0; i<j;i++)
-            pilha->push(transform.pop());
-        }
-
-        void torcaPilha(listaEnc4 *list){
-            erro = 0;
-            if(IsEmpty()){
-                erro = 1;
-                return;
-            }
-            Stack pilhaNew;
-            pilhaNew.initiaalizate();
-            No *temp = list->getPrimNo();
-            while(temp!=nullptr){
-                pilhaNew.push(temp->valor);
-            }
-        }
-
          void fibonacc(int p) {  
             int p1 = 0;
             int p2 = 1;

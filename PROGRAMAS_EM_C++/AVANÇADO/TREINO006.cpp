@@ -55,7 +55,7 @@ class Fila_encadeada {
             Node *newNode = new Node();
             newNode->value = data;
             newNode->next = nullptr;
-            if(IsEmpty()) {
+            if(N==0) {
                 ptr_first = newNode;
                 ptr_lest = newNode;
             }else {
@@ -98,22 +98,16 @@ class Fila_encadeada {
 
         void convercao_binario(int n) {
             int bi;
-            while(n/2 != 1) {
+            while(n>0) {
                 bi = n%2;
                 n = n/2;
                 enqueue(bi);
             }
-            enqueue(n/2);
         }
 };
 
 int main() {
     Fila_encadeada f;
     f.initializate();
-    f.fibonacc(4);
-    std::cout<<f.dequeue();
-    std::cout<<f.dequeue();
-    std::cout<<f.dequeue();
-    std::cout<<f.dequeue();
-    
+    f.convercao_binario(10);
 }
