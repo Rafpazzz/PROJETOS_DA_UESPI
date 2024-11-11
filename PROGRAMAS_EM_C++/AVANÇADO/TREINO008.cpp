@@ -184,7 +184,6 @@ public:
                     return false;
                 }
             
-
                 char topo = verifica.pop();
 
                 if(ch == '(' && topo == ')' || ch == '[' && topo == ']' || ch == '{' && topo == '}') {
@@ -247,6 +246,27 @@ public:
         }
 
         return n;
+    }
+
+    void pos_fix(std::string str) {
+        Stack aux;
+        aux.criar();
+        for(int i =0; i<str.length(); i++) {
+            char ch = str[i];
+
+            if(ch == '-' || ch == '+' || ch == '/' || ch == '*') {
+                aux.push(ch);
+            }else if(ch != '(' || ch != '[' || ch != '{' || ch != ')' || ch != ']' || ch != '}') {
+                push(ch);
+            }
+
+        }
+
+        for(int i = 0; i<aux.tamanho(); i++) {
+            push(aux.pop());
+        }
+
+        
     }
 };
 
