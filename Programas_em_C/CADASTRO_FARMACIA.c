@@ -15,6 +15,8 @@ int iPedido = 0;
 int contPedido = 0;
 int iFideli = 0;
 int contFideli = 0;
+FILE *arq;
+FILE *arq_prod;
 
 
 //declara a STRUCT(estrutura heterogenea) para guardar cliente
@@ -44,8 +46,8 @@ typedef struct{
     int quantidade_comprar;
     float valor_final;
     char nome_produto[40];
-    char cpf[11];
-    int codigoPe;
+    //char cpf[11];
+    //int codigoPe;
 } pedido;
 
 typedef struct {
@@ -67,13 +69,14 @@ fidelidade cadastroFidelidade() {
     return f;
 }
 
-fidelidade exibirFidelidade(fidelidade cadFideli[50]) {
+void exibirFidelidade(fidelidade cadFideli[50]) {
     printf("\nExibir fidelidade do cliente");
-    for(int i = 0; i<contFideli; i++) {
+    int i;
+    for(i=0;i<contFideli; i++){
         printf("\n CODIGO:   %d", i+1); 
-            printf("\nPrimera compra........: %s", cadFideli[i].primeira_compra);
-            printf("\nQuantidade de vezes que foi comprado o mesmo produto........: %d", cadFideli[i].verificacao);
-            printf("\nQuantas vezes foi inadimplente........: %d\n", cadFideli[i].inadimplente);
+		printf("\nPrimera compra........: %s", cadFideli[i].primeira_compra);
+		printf("\nQuantidade de vezes que foi comprado o mesmo produto........: %d", cadFideli[i].verificacao);
+		printf("\nQuantas vezes foi inadimplente........: %d\n", cadFideli[i].inadimplente);
         
     }
     
@@ -92,18 +95,19 @@ pedido cadastroPedido() {
     scanf("%f", &r.valor_final);
     printf("Informe o nome do produto: ");
     scanf(" %40[^\n]", r.nome_produto);
-    printf("Informe o codigo do produto: ");
-    scanf(" %d", &r.codigoPe);
-    printf("Informe o CPF do cliente: ");
-    scanf(" %11[^\n]", r.cpf);
+    //printf("Informe o codigo do produto: ");
+    //scanf(" %d", &r.codigoPe);
+   // printf("Informe o CPF do cliente: ");
+    //scanf(" %11[^\n]", r.cpf);
     
     contPedido = contPedido + 1;
     return r;
 }
 
-pedido exibiPedido(pedido cadPe[50]){
+void exibiPedido(pedido cadPe[50]){
     printf("\nExibir pedido do cliente");
-    //for(int i = 0; i<contPedido; i++){
+    int i;
+    for(i=0;i<contPedido; i++){
         
             printf("\nCODIGO.........[%d]", i+1);
 		    printf("\nNome do pdoficional ...........: %s", cadPe[i].nome_proficional);
@@ -113,7 +117,7 @@ pedido exibiPedido(pedido cadPe[50]){
 		    printf("\nValor final da compra ..........: %.2f\n", cadPe[i].valor_final);
 			printf("\n");
             
-    //}
+    }
     
 }
 
@@ -147,9 +151,10 @@ produto cadastroProduto() {
 	return a;
 }
 
-produto exibirProduto(produto cadP[50]) {
+void exibirProduto(produto cadP[50]) {
 	printf("\n ExibiC'C#o do cadastro do Produto ");
-	for(int i = 0; i<contProd; i++) {
+	int i;
+	for(i=0;i<contProd; i++) {
 		printf("\nCODIGO...........[%d]", i+1);
 		printf("\nNome do produto ...........: %s", cadP[i].nome_produto);
 		printf("\nodigo do produto .........:%d", cadP[i].codigo);
@@ -167,7 +172,8 @@ produto exibirProduto(produto cadP[50]) {
 }
 
 int busca_codigo(produto cadP[50], int cod) {
-	for(int i = 0; i<contProd; i++) {
+	int i = 0;
+	for(i=0;i<contProd; i++) {
 	    if(cod == cadP[i].codigo) {
 			return 1;  
 	    }
@@ -182,7 +188,17 @@ cliente cadastrarcliente() {
 	cliente c;
 	printf ("\n Sistema Cadastrar Clientes\n");
 	printf ("Informe o nome do cliente: ");
-	scanf(" %30[^\n]", c.nome); //ler atC) 30 caracteres separados por espaC'o
+	scanf(" %30[^\n]", c.nome);
+	
+	//FILE *fp;
+	//if((fp=fopen("Armazenamento_clientes.txt","a"))==NULL)
+	//{ printf("O arquivo nao pode ser aberto");
+	//system("Pause");
+	//exit(1);
+	//}
+	//strcat(c.nome, "\n");
+	//fputs(c.nome, fp);
+	
 	printf ("Informe o CPF do cliente: ");
 	scanf(" %11[^\n]", c.cpf);
 	cont++;
@@ -190,12 +206,69 @@ cliente cadastrarcliente() {
 	return c;
 }
 
+void Armazena_arquivo(cliente cad[50]) {
+	if((arq=fopen("Armazenamento_clientes.txt","r+"))==NULL)
+	{ printf("O arquivo nao pode ser aberto");
+	system("Pause");
+	exit(1);
+	}
+	int i;
+	for(i = 0; i<cont; i++){
+		strcat(cad[i].nome, "\n");
+		fputs(cad[i].nome, arq);
+		strcat(cad[i].cpf, "\n");
+		fputs(cad[i].cpf, arq);
+	} 
+}
+
+void Armazena_arquivo_Produto(produto cadP[50]) {
+	if((arq_prod=fopen("Armazenamento_produtos.txt","r+"))==NULL)
+	{ printf("O arquivo nao pode ser aberto");
+	system("Pause");
+	exit(1);
+	}
+	int i;
+	for(i = 0; i<contProd; i++){
+		fprintf(arq_prod,"%s\n" ,cadP[i].nome_produto);
+		fprintf(arq_prod, "%.2f\n",cadP[i].dosagem);
+		fprintf(arq_prod, "%s\n",cadP[i].composicao);
+		fprintf(arq_prod, "%s\n",cadP[i].tipo_produto);
+		fprintf(arq_prod, "%.2f\n",cadP[i].quantidade_produto);
+		fprintf(arq_prod, "%s\n",cadP[i].fabricante);
+		fprintf(arq_prod, "%.2f\n",cadP[i].valor);
+		fprintf(arq_prod, "%s\n",cadP[i].tarja);
+		fprintf(arq_prod, "%s\n",cadP[i].receita);
+		fprintf(arq_prod, "%s\n",cadP[i].validade);
+		fprintf(arq_prod, "%d\n",cadP[i].codigo);
+	/*	strcat(cadP[i].nome_produto, "\n");
+		fputs(cadP[i].nome_produto, arq_prod);
+		
+		//if(fwrite(&pi, sizeof(float), 1,pf) != 1)
+		fwrite(&cadP[i].dosagem, sizeof(float), 1, arq_prod);
+		strcat(cadP[i].composicao, "\n");
+		fputs(cadP[i].composicao, arq_prod);
+		strcat(cadP[i].tipo_produto, "\n");
+		fputs(cadP[i].tipo_produto, arq_prod);
+		//strcat(cadP[i].quantidade_produto, "\n");
+		strcat(cadP[i].fabricante, "\n");
+		fputs(cadP[i].fabricante, arq_prod);
+		//strcat(cadP[i].valor, "\n");
+		strcat(cadP[i].tarja, "\n");
+		fputs(cadP[i].tarja, arq_prod);
+		strcat(cadP[i].receita, "\n");
+		fputs(cadP[i].receita, arq_prod);
+		strcat(cadP[i].validade, "\n");
+		fputs(cadP[i].validade, arq_prod);
+		//strcat(cadP[i].codigo, "\n");*/
+		
+	} 
+}
 
 
-
-cliente exibircliente (cliente cad[50]) {
+void exibircliente (cliente cad[50]) {
 	printf("\n ExibiC'C#o de Cadastro Cliente   \n");
-	for (int j=0; j<cont; j++) {
+	int j;
+	for (j=0;j<cont; j++) {
 		printf("\nCODIGO..........[%d]", j+1);
 		printf("\nNome ...........: %s", cad[j].nome);
 		printf("\nCPF ..........: %s", cad[j].cpf);
@@ -204,7 +277,8 @@ cliente exibircliente (cliente cad[50]) {
 }
 
 int busca_cpf(cliente cad[50], char cpf[11]) {
-    for(int i = 0; i<cont; i++) {
+	int i;
+    for(i=0;i<cont; i++) {
             if(strcmp(cad[i].cpf, cpf) == 0) {
 			return 1;
         }
@@ -217,7 +291,8 @@ void adicionar_promocao(produto cadP[50]) {
     int codigo_prod;
     printf("Informe o codigo do produto: ");
     scanf("%d", &codigo_prod);
-    for(int i = 0; i<contProd; i++){
+    int i;
+    for(i=0;i<contProd; i++){
         if(codigo_prod == cadP[i].codigo) {
             int promo;
             int data;
@@ -245,9 +320,13 @@ int main()
 	produto cadP[50];
 	pedido cadPe[50];
 	fidelidade cadFideli[50];
+	char cpf_cliente[11];
+	
+	fopen("Armazenamento_clientes.txt","r+");
+	fopen("Armazenamento_produtos.txt","r+");
 
 	do {
-		printf ("\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE\n 3 p/ CADASTRAR PRODUTO\n 4 p/ EXIBIR PRODUTO\n  5 p/ CADASTRAR PEDIDO\n 6 p/ EXIBIR PEDIDO\n 7 p/ CADASTRAR FIDELIDADE\n 8 P/ EXIBIR FIDELIDADE\n 9 P/ ADICIONAR PROMOÇÃO\n  ***** 10 SAIR");
+		printf ("\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE\n 3 p/ CADASTRAR PRODUTO\n 4 p/ EXIBIR PRODUTO\n  5 p/ CADASTRAR PEDIDO\n 6 p/ EXIBIR PEDIDO\n 7 p/ CADASTRAR FIDELIDADE\n 8 P/ EXIBIR FIDELIDADE\n 9 P/ ADICIONAR PROMOÇÃO\n  10 P/ ARMAZENAR NO ARQUIVO DE CLIENTES\n 11 P/ ARMAZENAR NO ARQUIVO DE PRODUTOS ***** 12 SAIR");
 
 		printf ("\n\n Digite a opC'C#o:     ");
 		scanf ("%d", &opc);
@@ -272,34 +351,34 @@ int main()
 			break;
 
 		case 5 :
-		    cadPe [iPedido] = cadastroPedido();
-		    iPedido++;
-		    break;
+		    
+            printf("Infome o CPF do cliente: ");
+            scanf(" %11[^\n]", cpf_cliente);
+            busca_cpf(cad, cpf_cliente);
+		    if(busca_cpf(cad, cpf_cliente) == 1){
+		            //printf("CPF do cliente %s esta cadastrado\n", cad[i].nome);
+		            int codigo_produto;
+		            printf("Infome o codigo do produto: ");
+		            scanf("%d", &codigo_produto);
+			        busca_codigo(cadP, codigo_produto);
+			        if(busca_codigo(cadP, codigo_produto)==1) {
+				        //printf("Produto consta o sistema.\n");
+				        cadPe [iPedido] = cadastroPedido();
+		                iPedido++;
+				        break;
+			        }else {
+				        printf("Produto nao consta no sistema. Processamento do pedido finalizado\n");
+                        break;
+			        }
+		        }else{
+		            printf("CPF do cliente nao cadastrado. Processamento do pedido finalizado\n");
+		            break;
+		        }
+		   
 
 		case 6 :
-
-            for(int i = 0; i<contPedido; i++){
-                busca_cpf(cad, cadPe[i].cpf);
-		        if(busca_cpf(cad, cadPe[i].cpf) == 1){
-		            printf("CPF do cliente %s esta cadastrado\n", cad[i].nome);
-		        }else{
-		            printf("CPF do cliente %s nao cadastrado \n", cad[i].nome);
-		        }
-           
-		    
-		    
-			    busca_codigo(cadP, cadPe[i].codigoPe);
-			    if(busca_codigo(cadP, cadPe[i].codigoPe)==1) {
-				    printf("Produto consta o sistema.\n");
-			    }else {
-				    printf("Produto nao consta no sistema\n");
-                    printf("Cadastre-o imediatamente\n");
-			    }
-		    exibiPedido(cadPe);
-            }
-
-			
-		    break;
+			exibiPedido(cadPe);
+			break;
 
 		case 7 :
 		    cadFideli[iFideli] = cadastroFidelidade();
@@ -314,19 +393,24 @@ int main()
 		    adicionar_promocao(cadP);
 		    break;
 		
-        case 10:
+		case 10:
+			Armazena_arquivo(cad);
+			break;
+		
+		case 11:
+			Armazena_arquivo_Produto(cadP);
+			break;
+		
+        case 12:
             printf("saindo do sistema...\n");
+            fclose(arq);
+            fclose(arq_prod);
 			break;
         default:
             printf("Opção invalida. Tente novamente. \n");
 		};
 	}
-	while(opc != 10);
+	while(opc != 12);
 	
 	return 0;
 }
-
-
-
-
-
