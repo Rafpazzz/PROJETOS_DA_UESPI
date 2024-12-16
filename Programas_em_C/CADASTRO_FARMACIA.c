@@ -15,15 +15,101 @@ int iPedido = 0;
 int contPedido = 0;
 int iFideli = 0;
 int contFideli = 0;
+int numero_cliente_dinamico = 0;
 FILE *arq;
 FILE *arq_prod;
+FILE *arq_ped;
 
+//estrutura em ponteiros
+typedef struct no {
+	char descricao[50];
+	struct no *ponteiro_lista_cliente;
+	struct no *ponteiro_lista_pedidos;
+	struct no *ponteiro_lista_produtos;
+	int quantProd;
+	int quantPed;
+	int quantCliente;
+	struct no *prox;
+}descritor;
+
+typedef struct Cliente_Dinamico{
+	char nome[30];
+	char cpf[11];
+	struct Cliente_Dinamico *prox;
+}cliente_dinamico;
+
+cliente_dinamico *inicio_cliente;
+descritor *descritor_dinamico;
+
+void cria_cliete() {
+	inicio_cliente = NULL;
+}
+
+void cria_descritor() {
+	descritor_dinamico = (descritor *)malloc(sizeof(descritor));
+    if (descritor_dinamico == NULL) {
+        printf("Erro ao alocar memÛria para o descritor.\n");
+		exit(1);
+	}
+        
+	strcpy(descritor_dinamico->descricao,"Cadastro de Farmacia - Drogarias UESPI");
+	descritor_dinamico->ponteiro_lista_cliente = NULL;
+	descritor_dinamico->ponteiro_lista_produtos = NULL;
+	descritor_dinamico->ponteiro_lista_pedidos = NULL;
+	descritor_dinamico->quantCliente = 0;
+	descritor_dinamico->quantPed = 0;
+	descritor_dinamico->quantProd = 0;
+}
+
+void Insere_cliente(char nome[30], char cpf[11]) {
+	cliente_dinamico *novo_Cliente;
+
+	novo_Cliente = (cliente_dinamico*) malloc(sizeof(cliente_dinamico));
+	
+	strcpy(novo_Cliente->nome, nome);
+	strcpy(novo_Cliente->cpf, cpf);
+	novo_Cliente->prox = NULL;
+	numero_cliente_dinamico++;
+	descritor_dinamico->quantCliente = numero_cliente_dinamico;
+	
+	if(inicio_cliente == NULL){
+		inicio_cliente = novo_Cliente;
+		descritor_dinamico->ponteiro_lista_cliente = novo_Cliente;
+	}else {
+		novo_Cliente->prox = inicio_cliente;
+		inicio_cliente = novo_Cliente;
+		
+	}
+	
+}
+
+void imprime_descritor_clientes() {
+	printf("DescriÁ„o: %s\n", descritor_dinamico->descricao);
+	printf("EndereÁo lista Cliente: %p\n", descritor_dinamico->ponteiro_lista_cliente);
+	printf("EndereÁo lista Pedidos: %p\n", descritor_dinamico->ponteiro_lista_pedidos);
+	printf("EndereÁo lista Produtos: %p\n", descritor_dinamico->ponteiro_lista_produtos);
+	printf("Qunatidade clientes: %d\n", descritor_dinamico->quantCliente);
+	printf("Quantidade de Pedidos: %d\n", descritor_dinamico->quantPed);
+	printf("Quantidade de Produtos: %d\n", descritor_dinamico->quantProd);
+}
+
+void imprime_cliente_dinamico(){
+	cliente_dinamico *ptr;
+	if(inicio_cliente == NULL) {
+		printf("Lista vazia\n");
+		return;
+	}
+	ptr = inicio_cliente;
+	while(ptr!= NULL) {
+		printf("nome: %s //// cpf: %s\n", ptr->nome, ptr->cpf);
+		ptr = ptr->prox;
+	}
+}
 
 //declara a STRUCT(estrutura heterogenea) para guardar cliente
 typedef struct {
 	char nome[30];
 	char cpf[11];
-	int fidelidade;
 } cliente;
 
 typedef struct {
@@ -58,7 +144,7 @@ typedef struct {
 
 fidelidade cadastroFidelidade() {
     fidelidade f;
-    printf("Informe se √© a sua primeira compra[sim/nao]");
+    printf("Informe se È a sua primeira compra[sim/nao]");
     scanf(" %5[^\n]", f.primeira_compra);
     printf("Informe quantas vez foi comprado o produto referente ao pedido cadastrado anteriormente: ");
     scanf("%d", &f.verificacao);
@@ -140,7 +226,7 @@ produto cadastroProduto() {
 	scanf("%f", &a.valor);
 	printf("Informe a tarja do remedio: ");
 	scanf(" %20[^\n]", a.tarja);
-	printf("informe se o remedio precisa de receita[sim/n√£o]: ");
+	printf("informe se o remedio precisa de receita[sim/n„o]: ");
 	scanf(" %5[^\n]", a.receita);
 	printf("Infome se o produto esta dentro da validade[sim/nao]: ");
 	scanf(" %5[^\n]", a.validade);
@@ -159,7 +245,7 @@ void exibirProduto(produto cadP[50]) {
 		printf("\nNome do produto ...........: %s", cadP[i].nome_produto);
 		printf("\nodigo do produto .........:%d", cadP[i].codigo);
 		printf("\nDosagem ..........: %f", cadP[i].dosagem);
-		printf("\nComposi√ß√£o ..........: %s", cadP[i].composicao);
+		printf("\nComposiÁ„o ..........: %s", cadP[i].composicao);
 		printf("\nTipo do produto ..........: %s", cadP[i].tipo_produto);
 		printf("\nQuantidade em estoque ..........: %d", cadP[i].quantidade_produto);
 		printf("\nFabricante ..........: %s", cadP[i].fabricante);
@@ -233,7 +319,7 @@ void Armazena_arquivo_Produto(produto cadP[50]) {
 		fprintf(arq_prod, "%.2f\n",cadP[i].dosagem);
 		fprintf(arq_prod, "%s\n",cadP[i].composicao);
 		fprintf(arq_prod, "%s\n",cadP[i].tipo_produto);
-		fprintf(arq_prod, "%.2f\n",cadP[i].quantidade_produto);
+		fprintf(arq_prod, "%.2d\n",cadP[i].quantidade_produto);
 		fprintf(arq_prod, "%s\n",cadP[i].fabricante);
 		fprintf(arq_prod, "%.2f\n",cadP[i].valor);
 		fprintf(arq_prod, "%s\n",cadP[i].tarja);
@@ -261,6 +347,22 @@ void Armazena_arquivo_Produto(produto cadP[50]) {
 		fputs(cadP[i].validade, arq_prod);
 		//strcat(cadP[i].codigo, "\n");*/
 		
+	} 
+}
+
+void Armazena_arquivo_Pedido(pedido cadPe[50]) {
+	if((arq_ped=fopen("Armazenamento_pedidos.txt","r+"))==NULL)
+	{ printf("O arquivo nao pode ser aberto");
+	system("Pause");
+	exit(1);
+	}
+	int i;
+	for(i = 0; i<contPedido; i++){
+		fprintf(arq_ped,"%s\n" ,cadPe[i].nome_proficional);
+		fprintf(arq_ped, "%s\n", cadPe[i].forma_pagamento);
+		fprintf(arq_ped, "%d\n", cadPe[i].quantidade_comprar);
+		fprintf(arq_ped, "%f\n", cadPe[i].valor_final);
+		fprintf(arq_ped, "%s\n", cadPe[i].nome_produto);
 	} 
 }
 
@@ -296,14 +398,14 @@ void adicionar_promocao(produto cadP[50]) {
         if(codigo_prod == cadP[i].codigo) {
             int promo;
             int data;
-            printf("Informe a promo√ß√£o planejada para o produto: ");
+            printf("Informe a promoÁ„o planejada para o produto: ");
             scanf("%d", &promo);
-            printf("Informe ate que dia a promo√ß√£o sera valida: ");
+            printf("Informe ate que dia a promoÁ„o sera valida: ");
             scanf("%d", &data);
     
             cadP[i].valor = cadP[i].valor - (cadP[i].valor*(promo/100));
     
-            printf("o valor do produto depos da promo√ß√£o √© : %f", cadP[i].valor);
+            printf("o valor do produto depos da promoÁ„o È : %f", cadP[i].valor);
         } else {
             printf("Produto nao listado.");
         }
@@ -321,12 +423,15 @@ int main()
 	pedido cadPe[50];
 	fidelidade cadFideli[50];
 	char cpf_cliente[11];
+	cria_cliete();
+	cria_descritor();
 	
 	fopen("Armazenamento_clientes.txt","r+");
 	fopen("Armazenamento_produtos.txt","r+");
+	fopen("Armazenamento_pedidos.txt", "r+");
 
 	do {
-		printf ("\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE\n 3 p/ CADASTRAR PRODUTO\n 4 p/ EXIBIR PRODUTO\n  5 p/ CADASTRAR PEDIDO\n 6 p/ EXIBIR PEDIDO\n 7 p/ CADASTRAR FIDELIDADE\n 8 P/ EXIBIR FIDELIDADE\n 9 P/ ADICIONAR PROMO√á√ÉO\n  10 P/ ARMAZENAR NO ARQUIVO DE CLIENTES\n 11 P/ ARMAZENAR NO ARQUIVO DE PRODUTOS ***** 12 SAIR");
+		printf ("\n SISTEMA CADASTRO \n\n 1 - CADASTRAR CLIENTE\n 2 - EXIBIR CLIENTE\n 3 p/ CADASTRAR PRODUTO\n 4 p/ EXIBIR PRODUTO\n  5 p/ CADASTRAR PEDIDO\n 6 p/ EXIBIR PEDIDO\n 7 p/ CADASTRAR FIDELIDADE\n 8 P/ EXIBIR FIDELIDADE\n 9 P/ ADICIONAR PROMO«√O\n  10 P/ ARMAZENAR NO ARQUIVO DE CLIENTES\n 11 P/ ARMAZENAR NO ARQUIVO DE PRODUTOS\n 12 P/ ARMAZENAR NO ARQUIVO DE PEDIDOS\n 13 P/ ARMAZENAR CLIENTE DINAMICO\n 14 P/ IMPRIMIR CLIENTE DINAMICO\n 15 P/ IMPRIMIR DESCRITOR CLIENTE ***** 16 SAIR");
 
 		printf ("\n\n Digite a opC'C#o:     ");
 		scanf ("%d", &opc);
@@ -401,16 +506,41 @@ int main()
 			Armazena_arquivo_Produto(cadP);
 			break;
 		
-        case 12:
+		case 12:
+			Armazena_arquivo_Pedido(cadPe);
+			break;
+		
+		case 13:{
+			char nome[30];
+			char cpf[11];
+			printf("Informe o nome Cliente: ");
+			scanf(" %30[^\n]", nome);
+			printf("Informe o cpf Cliente: ");
+			scanf(" %11[^\n]", cpf);
+			Insere_cliente(nome, cpf);
+		}
+			break;
+		
+		case 14:
+			imprime_cliente_dinamico();
+			break;
+		
+		case 15:
+			imprime_descritor_clientes();
+			break;
+		
+        case 16:
             printf("saindo do sistema...\n");
             fclose(arq);
             fclose(arq_prod);
 			break;
+			
         default:
-            printf("Op√ß√£o invalida. Tente novamente. \n");
+            printf("OpÁ„o invalida. Tente novamente. \n");
 		};
 	}
-	while(opc != 12);
+	while(opc != 16);
 	
 	return 0;
 }
+
