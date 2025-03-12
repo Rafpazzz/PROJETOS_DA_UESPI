@@ -1,5 +1,4 @@
 package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03p2;
-import PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03p2.Q1;
 
 public class UandoEstoque {
     public static void main(String[] args) {
