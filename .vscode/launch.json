@@ -2,6 +2,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "QuantificandoNotas",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03p2.QuantificandoNotas",
+      "projectName": "PROJETOS_DA_UESPI_f0cdcab"
+    },
+    {
+      "type": "java",
+      "name": "UandoEstoque",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03p2.UandoEstoque",
+      "projectName": "PROJETOS_DA_UESPI_f0cdcab"
+    },
+    {
+      "type": "java",
+      "name": "Q9",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03.Q9",
+      "projectName": "PROJETOS_DA_UESPI_f0cdcab"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
