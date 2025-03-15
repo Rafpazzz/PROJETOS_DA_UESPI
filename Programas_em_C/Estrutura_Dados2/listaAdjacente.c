@@ -10,7 +10,7 @@ typedef struct aux{
 typedef struct {
     int QuantVertice;
     int QuantAerestas;
-    ElemLista** A;
+    ElemLista** A; //array de ponteiros de ElemLista, onde cada elemento representa um vertice e aponta para uma lista de vertice adjacente(ao lado)
 }Grafo;
 
 bool incializaGrafo (Grafo* g, int veritices) {
@@ -172,5 +172,9 @@ int main() {
 
     incializaGrafo(a,5);
     inserirAresta(a,3,1);
+    inserirAresta(a,2,3);
+    exibiGrafo(a);
+    printf("==================");
+    liberaGrafo(a);
     exibiGrafo(a);
 }

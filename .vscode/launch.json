@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ListaAdj",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EstruturaDeDados.ListaAdj",
+      "projectName": "PROJETOS_DA_UESPI_f0cdcab"
+    },
+    {
+      "type": "java",
       "name": "ListasAdjacentes",
       "request": "launch",
       "mainClass": "PROGRAMAS_EM_JAVA.EstruturaDeDados.ListasAdjacentes",
