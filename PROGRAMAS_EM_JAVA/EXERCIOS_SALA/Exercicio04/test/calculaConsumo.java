@@ -1,4 +1,4 @@
-package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04;
+package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04.test;
 
 import java.util.Scanner;
 

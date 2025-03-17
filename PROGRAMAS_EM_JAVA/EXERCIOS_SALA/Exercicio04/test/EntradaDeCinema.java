@@ -1,4 +1,4 @@
-package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04;
+package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04.test;
 
 import java.util.Scanner;
 
@@ -17,8 +17,9 @@ public class EntradaDeCinema {
 
         System.out.print("Informe sua idade: ");
         int idade = myReader.nextInt();
-        entrada.setDiaSemana(3);       
-        System.out.println("O valor a pagar no ingrssoe é " + calculaPreco(idade, entrada.getDiaSemana()) + " reais");     
+        entrada.setDiaSemana(7);       
+        System.out.println("O valor a pagar no ingrssoe é " + calculaPreco(idade, entrada.getDiaSemana()) + " reais");  
+        usoSwitch(entrada.getDiaSemana());   
     }
         
     public static float calculaPreco(int idade, int dia) {
@@ -34,6 +35,35 @@ public class EntradaDeCinema {
                 ingressoValor = 12;
                 return ingressoValor;
             }
+                
+        }
+    }
+
+    public static void usoSwitch(int diaSemana) {
+        switch(diaSemana) {
+            case 1:
+                System.out.println("O filme foi assistido na domingo");
+                break;
+            case 2:
+                System.out.println("O filme foi assistido na segunda");
+                break;
+            case 3:
+                System.out.println("O filme foi assistido na terça");
+                break;
+            case 4:
+                System.out.println("O filme foi assistido na qurta");
+                break;
+            case 5:
+                System.out.println("O filme foi assistido na quinta");
+                break;
+            case 6:
+                System.out.println("O filme foi assistido na sexta");
+                break;
+            case 7:
+                System.out.println("O filme foi assistido no sábado");
+                break;
+            default:
+                System.out.println("Opção invavalida");
                 
         }
     }
