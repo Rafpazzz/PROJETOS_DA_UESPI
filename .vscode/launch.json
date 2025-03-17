@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "EntradaDeCinema",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04.EntradaDeCinema",
+      "projectName": "PROJETOS_DA_UESPI_63199a95"
+    },
+    {
+      "type": "java",
       "name": "Soma",
       "request": "launch",
       "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04.Soma",
