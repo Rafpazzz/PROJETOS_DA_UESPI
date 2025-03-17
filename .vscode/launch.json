@@ -3,6 +3,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Soma",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04.Soma",
+      "projectName": "PROJETOS_DA_UESPI_63199a95"
+    },
+    {
+      "type": "java",
+      "name": "calculaConsumo",
+      "request": "launch",
+      "mainClass": "PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio04.calculaConsumo",
+      "projectName": "PROJETOS_DA_UESPI_63199a95"
+    },
+    {
+      "type": "java",
       "name": "ListaAdj",
       "request": "launch",
       "mainClass": "PROGRAMAS_EM_JAVA.EstruturaDeDados.ListaAdj",
