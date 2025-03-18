@@ -26,7 +26,7 @@ bool inicializaGrafo(Grafo *g, int vertices) {
 
 }
 
-bool insereVerticeAux(Grafo* g, int v1, int v2) {
+bool insereArestaAux(Grafo* g, int v1, int v2) {
     No* novo, *ant = NULL;
     No* atual = g->A[v1];
     while(atual && atual->dado < v2) {
@@ -44,10 +44,10 @@ bool insereVerticeAux(Grafo* g, int v1, int v2) {
 
 }
 
-bool inserirVertice(Grafo* g, int v1, int v2) {
+bool inserirAresta(Grafo* g, int v1, int v2) {
     if(!g || v1<0 || v1 >= g->numVertices || v2 <0 || v2>=g->numVertices)  return false;
-    if(insereVerticeAux(g,v1,v2)){
-        insereVerticeAux(g,v2,v1);
+    if(insereArestaAux(g,v1,v2)){
+        insereArestaAux(g,v2,v1);
         g->numArestas++;
         
     }
@@ -55,7 +55,7 @@ bool inserirVertice(Grafo* g, int v1, int v2) {
 
 }
 
-bool removerVerticeAux(Grafo* g, int v1, int v2) {
+bool removerArestaAux(Grafo* g, int v1, int v2) {
     No* ant = NULL;
     No* atual = g->A[v1];
     while(atual && atual->dado < v2){
@@ -73,7 +73,7 @@ bool removerVerticeAux(Grafo* g, int v1, int v2) {
 
 }
 
-bool removerVertice(Grafo* g, int v1, int v2) {
+bool removerAresta(Grafo* g, int v1, int v2) {
     if(!g || v1<0 || v1 >= g->numVertices || v2 <0 || v2>=g->numVertices)  return false;
     if(removerVerticeAux(g,v1,v2)){
         removerVerticeAux(g,v2,v1);
@@ -180,8 +180,14 @@ void exibirGrafo(Grafo* g) {
 int main() {
     Grafo *a;
     inicializaGrafo(a,5);
-    inserirVertice(a,3,2);
-    inserirVertice(a,1,4);
+    inserirAresta(a,3,2);
+    inserirAresta(a,1,4);
+    if(existeAresta(a,3,2) == true) {
+        printf("true\n");
+    }else{
+        printf("false\n");
+    }
     exibirGrafo(a);
+    
     
 }
