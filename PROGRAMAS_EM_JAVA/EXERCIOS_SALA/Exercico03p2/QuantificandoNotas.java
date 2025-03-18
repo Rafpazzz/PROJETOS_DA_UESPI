@@ -29,6 +29,8 @@ public class QuantificandoNotas {
                     System.out.println("Nota invalida. Tente novamente");
             }
         }while(nota>5);
+
+        myReader.close();
     }
 
     public static void main(String[] args) {
