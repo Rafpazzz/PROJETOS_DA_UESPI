@@ -1,5 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include<stdlib.h>
+#include<stdio.h>
 #include<stdbool.h>
 
 typedef struct aux{
@@ -75,8 +75,8 @@ bool removerArestaAux(Grafo* g, int v1, int v2) {
 
 bool removerAresta(Grafo* g, int v1, int v2) {
     if(!g || v1<0 || v1 >= g->numVertices || v2 <0 || v2>=g->numVertices)  return false;
-    if(removerVerticeAux(g,v1,v2)){
-        removerVerticeAux(g,v2,v1);
+    if(removerArestaAux(g,v1,v2)){
+        removerArestaAux(g,v2,v1);
         g->numArestas--;
         return true;
     }
@@ -182,11 +182,6 @@ int main() {
     inicializaGrafo(a,5);
     inserirAresta(a,3,2);
     inserirAresta(a,1,4);
-    if(existeAresta(a,3,2) == true) {
-        printf("true\n");
-    }else{
-        printf("false\n");
-    }
     exibirGrafo(a);
     
     
