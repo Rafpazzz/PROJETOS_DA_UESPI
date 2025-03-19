@@ -85,8 +85,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "x:/Filas",
-      "program": "x:/Filas/build/Debug/outDebug",
+      "cwd": "c:/Users/rafae/OneDrive/Documentos/GitHub/PROJETOS_DA_UESPI/Programas_em_C/Programacao_Etruturada",
+      "program": "c:/Users/rafae/OneDrive/Documentos/GitHub/PROJETOS_DA_UESPI/Programas_em_C/Programacao_Etruturada/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
