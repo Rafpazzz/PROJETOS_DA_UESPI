@@ -23,8 +23,22 @@ public class Funcionario {
         }
     }
 
-    public void ehNomeValido(String nome){
-        if(nome != null && nome.length() == 0 ){}
+    public boolean ehNomeValido(String nome){
+        if(nome != null && nome.length() == 0){
+            return false;
+        }
+
+        String[] partes = nome.split(" ");
+
+        if(partes.length < 2) return false;
+
+        for(String parte : partes) {
+            if(parte.isEmpty() || !Character.isUpperCase(parte.charAt(0))){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean demite() {
