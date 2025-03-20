@@ -5,6 +5,7 @@
 typedef struct aux{
     int dado;
     struct aux *prox;
+    int peso;
 }ElemLista, *PONT;
 
 typedef struct {
@@ -34,15 +35,15 @@ void exibiGrafo(Grafo* g) {
         printf("[%2i]", x);
         atual = g->A[x];
         while(atual) {
-            printf(" ->%3d", atual->dado);
+            printf(" ->%3d, Peso: %3.2d | ", atual->dado, atual->peso);
             atual = atual->prox;
         }
         printf("\n");
     }
 }
 
-bool inserirAresta(Grafo* g, int v1, int v2) {
-    if(!g ||v1 < 0 || v2 < 0 || v1 >= g->QuantVertice || v2 >= g->QuantVertice) return false;
+bool inserirAresta(Grafo* g, int v1, int v2, int peso) {
+    if(!g ||v1 < 0 || v2 < 0 || v1 >= g->QuantVertice || v2 >= g->QuantVertice || peso < 0) return false;
     ElemLista *novo, *ant = NULL;
     ElemLista* atual = g->A[v1];
     while(atual && atual->dado<v2) {
@@ -54,6 +55,7 @@ bool inserirAresta(Grafo* g, int v1, int v2) {
     novo = (ElemLista*)malloc(sizeof(ElemLista));
     novo->dado = v2;
     novo->prox =atual;
+    novo->peso = peso;
     if(ant) ant->prox = novo;
     else g->A[v1] = novo;
     g->QuantAerestas++;
@@ -159,10 +161,7 @@ int main() {
     Grafo* a;
 
     incializaGrafo(a,5);
-    inserirAresta(a,3,1);
-    inserirAresta(a,2,3);
+    inserirAresta(a,1,3,7);
     exibiGrafo(a);
-    printf("==================");
-    liberaGrafo(a);
-    exibiGrafo(a);
+    
 }
