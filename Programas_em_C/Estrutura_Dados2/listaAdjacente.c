@@ -13,7 +13,7 @@ typedef struct {
     ElemLista** A; //array de ponteiros de ElemLista, onde cada elemento representa um vertice e aponta para uma lista de vertice adjacente(ao lado)
 }Grafo;
 
-bool incializaGrafo (Grafo* g, int veritices) {
+bool incializaGrafo(Grafo* g, int veritices) {
     if(g== NULL || veritices <0 ) return false;
     g->QuantVertice = veritices;
     g->QuantAerestas = 0;
@@ -168,13 +168,15 @@ bool liberaGrafo(Grafo* g) {
 }
 
 int main() {
-    Grafo* a;
+    Grafo *a;
 
     incializaGrafo(a,5);
-    inserirAresta(a,3,1);
-    inserirAresta(a,2,3);
+    inserirAresta(a,0,2);
+    inserirAresta(a,0,1);
+    inserirAresta(a,1,2);
+    inserirAresta(a,1,3);
+    inserirAresta(a,3,4);
+    inserirAresta(a,4,2);
     exibiGrafo(a);
-    printf("==================");
-    liberaGrafo(a);
-    exibiGrafo(a);
+    
 }

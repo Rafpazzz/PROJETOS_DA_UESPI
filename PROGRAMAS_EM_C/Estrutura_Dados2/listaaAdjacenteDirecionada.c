@@ -161,8 +161,8 @@ int main() {
     incializaGrafo(a,5);
     inserirAresta(a,3,1);
     inserirAresta(a,2,3);
-    exibiGrafo(a);
-    printf("==================");
-    liberaGrafo(a);
-    exibiGrafo(a);
+    inserirAresta(a,2,4);
+    inserirAresta(a,1,3);
+    inserirAresta(a,0,3);
+    
 }

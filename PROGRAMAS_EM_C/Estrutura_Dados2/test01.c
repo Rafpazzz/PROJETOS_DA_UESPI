@@ -19,7 +19,7 @@ bool inicializaGrafo(Grafo *g, int vertices) {
     g->numArestas = 0;
     g->A = (No**)malloc(sizeof(No*)*vertices);
     int x;
-    for(x= 0; x<g->numVertices; x++) {
+    for(x= 0; x<vertices; x++) {
         g->A[x] = NULL;
     }
     return true;
@@ -38,7 +38,7 @@ bool insereArestaAux(Grafo* g, int v1, int v2) {
     novo = (No*)malloc(sizeof(No));
     novo->dado = v2;
     novo->prox = atual;
-    if(ant) ant->prox = atual;
+    if(ant) ant->prox = novo;
     else g->A[v1] = novo;
     return true;
 
@@ -169,7 +169,7 @@ void exibirGrafo(Grafo* g) {
         printf("[%2i]", i);
         atual = g->A[i];
         while(atual) {
-            printf(" -> %d. ", atual->dado);
+            printf(" -> %3d ", atual->dado);
             atual = atual->prox;
         }
         printf("\n");
@@ -180,8 +180,12 @@ void exibirGrafo(Grafo* g) {
 int main() {
     Grafo *a;
     inicializaGrafo(a,5);
-    inserirAresta(a,3,2);
-    inserirAresta(a,1,4);
+    inserirAresta(a,0,2);
+    inserirAresta(a,0,1);
+    inserirAresta(a,1,2);
+    inserirAresta(a,1,3);
+    inserirAresta(a,3,4);
+    inserirAresta(a,4,2);
     exibirGrafo(a);
     
     

@@ -100,7 +100,7 @@ int numeroDeArestas(Grafo* g){
     else return -1;
 }
 
-    int numeroDeArestas2(Grafo* g){
+int numeroDeArestas2(Grafo* g){
     if (g==NULL) return -1;
     ElemLista *atual;
     int x, arestas = 0;
