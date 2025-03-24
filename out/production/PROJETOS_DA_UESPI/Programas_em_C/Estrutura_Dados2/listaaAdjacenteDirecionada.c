@@ -13,7 +13,7 @@ typedef struct {
     ElemLista** A; //array de ponteiros de ElemLista, onde cada elemento representa um vertice e aponta para uma lista de vertice adjacente(ao lado)
 }Grafo;
 
-bool incializaGrafo(Grafo* g, int veritices) {
+bool incializaGrafo (Grafo* g, int veritices) {
     if(g== NULL || veritices <0 ) return false;
     g->QuantVertice = veritices;
     g->QuantAerestas = 0;
@@ -41,7 +41,8 @@ void exibiGrafo(Grafo* g) {
     }
 }
 
-bool inserirArestaAux(Grafo* g, int v1, int v2) {
+bool inserirAresta(Grafo* g, int v1, int v2) {
+    if(!g ||v1 < 0 || v2 < 0 || v1 >= g->QuantVertice || v2 >= g->QuantVertice) return false;
     ElemLista *novo, *ant = NULL;
     ElemLista* atual = g->A[v1];
     while(atual && atual->dado<v2) {
@@ -49,26 +50,19 @@ bool inserirArestaAux(Grafo* g, int v1, int v2) {
         atual = atual->prox;
     }
     
-    if(atual && atual->dado == v2) return false;
+    if(atual && atual->dado == v2) return true;
     novo = (ElemLista*)malloc(sizeof(ElemLista));
     novo->dado = v2;
     novo->prox =atual;
     if(ant) ant->prox = novo;
     else g->A[v1] = novo;
+    g->QuantAerestas++;
     return true;
 
 }
 
-bool inserirAresta(Grafo* g, int val1, int val2) {
-    if(!g || val1<0 || val2<0 || val1 >= g->QuantVertice || val2 >= g->QuantVertice || val1 == val2) return false;
-    if(inserirArestaAux(g,val1,val2)) {
-        inserirArestaAux(g,val2,val1);
-        g->QuantAerestas++;
-    }
-    return true;
-}
-
-bool removeArestaAux(Grafo* g, int v1, int v2){
+bool removeAresta(Grafo* g, int v1, int v2){
+    if (!g || v1 < 0 || v2 < 0 || v1 >= g->QuantVertice || v2 >= g->QuantVertice) return false;
     ElemLista* ant = NULL;
     ElemLista* atual = g->A[v1];
 
@@ -80,23 +74,11 @@ bool removeArestaAux(Grafo* g, int v1, int v2){
         if (ant) ant->prox = atual->prox;
         else g->A[v1] = atual->prox;
         free(atual);
+        g->QuantAerestas--;
         return true;
     }
         return false;
 }
-
-bool removeAresta(Grafo* g, int v1, int v2) {
-    if (!g || v1 < 0 || v2 < 0 || v1 >= g->QuantVertice || v2 >= g->QuantVertice) return false;
-        if(removeArestaAux(g, v1, v2)){
-            removeArestaAux(g, v2, v1);
-            g->QuantAerestas--;
-            return true;
-        }
-        return false;
-        
-}
-
-
 
 bool arestaExiste(Grafo* g, int v1, int v2){
     if (!g || v1 < 0 || v2 < 0 || v1 >= g->QuantVertice || v2 >= g->QuantVertice) return false;
@@ -127,24 +109,30 @@ int numeroDeArestas(Grafo* g){
             atual = atual->prox;
         }
     }
-    return arestas/2;
+    return arestas;
 }
 
 bool possuiVizinhos(Grafo* g, int v){
-    if (!g || v < 0 || v >= g->QuantVertice || !(g->A[v]))
-    return false;
+    if (!g || v < 0 || v >= g->QuantVertice || !(g->A[v])) return false;
     return true;
 }
     
 int retornaGrauDoVertice(Grafo* g, int v){
     if (!g || v < 0 || v >= g->QuantVertice) return -1;
-    int grau = 0;
-    ElemLista* atual = g->A[v];
-    while (atual){
-        grau++;
+
+    int x, grau = 0;
+
+    for(x = 0; x<g->QuantVertice; x++){
+        ElemLista* atual = g->A[x];
+        while (atual){
+        if(x == v) grau++;
+        if(atual->dado == v) grau++;
         atual = atual->prox;
+        }
     }
+
     return grau;
+
 }
 
 bool liberaGrafo(Grafo* g) {
@@ -168,15 +156,13 @@ bool liberaGrafo(Grafo* g) {
 }
 
 int main() {
-    Grafo *a;
+    Grafo* a;
 
     incializaGrafo(a,5);
-    inserirAresta(a,0,2);
-    inserirAresta(a,0,1);
-    inserirAresta(a,1,2);
+    inserirAresta(a,3,1);
+    inserirAresta(a,2,3);
+    inserirAresta(a,2,4);
     inserirAresta(a,1,3);
-    inserirAresta(a,3,4);
-    inserirAresta(a,4,2);
-    exibiGrafo(a);
+    inserirAresta(a,0,3);
     
 }
