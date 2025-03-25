@@ -36,6 +36,11 @@ public class EstruturaEstatica<T> {
 
     }
 
+    protected boolean isEmpty(){
+        if(cont == 0) return true;
+        return false;
+    }
+
     protected int tamanhoArray() {
         return cont;
     }

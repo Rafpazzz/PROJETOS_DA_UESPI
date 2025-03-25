@@ -20,4 +20,9 @@ public class Pilha2<T> extends EstruturaEstatica<T> {
     public String mostar() {
         return super.toString();
     }
+
+    public boolean vezia() {
+        return super.isEmpty();
+    }
+
 }

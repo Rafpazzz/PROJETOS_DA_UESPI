@@ -89,11 +89,21 @@ public class Pilha<T> {
         }
     }
 
-    public void dequeue() {
-        cont--;
+    public boolean isEmpyt() {
+        if(cont == 0) return true;
+        return false;
     }
 
-    public int ultimoIndice() {
+    public T dequeue() {
+        if(isEmpyt()) {
+            return null;
+        }
+        T temp = a[cont-1];
+        cont--;
+        return temp;
+    }
+
+    public int topo() {
         if(cont == 0) return -1;
         return cont-1;
     }
