@@ -1,23 +1,18 @@
-package PROGRAMAS_EM_JAVA.EstruturaDeDados.Arrays.domain;
+package PROGRAMAS_EM_JAVA.EstruturaDeDados.Pilha.domain;
 
 import java.lang.reflect.Array;
 
-public class Lista<T> {
+public class Pilha<T> {
     private T[] a; //generalizaçao de tipo de variavel.
     private final int MAX = 5;
     public int cont;
 
-    public Lista(Class<T> tipoClasse) {
-        a = (T[])Array.newInstance(tipoClasse,MAX);
-        cont = 0;
-    }
-
-    public Lista() {
+    public Pilha() {
         a = (T[]) new Object[MAX];
         cont = 0;
     }
 
-    public void inserirElemento(T data) {
+    public void queue(T data) {
         try{
             a[cont] = data;
             cont++;
@@ -46,17 +41,6 @@ public class Lista<T> {
 
         s.append(" ]");
 
-//        String s = "[ ";
-//        for(int i = 0; i<cont-1; i++) {
-//            s += a[i];
-//            s += ", ";
-//        }
-//
-//        if(cont > 0) {
-//            s += a[cont-1];
-//        }
-//
-//        s+=" ]";
         return s.toString();
     }
 
@@ -103,6 +87,10 @@ public class Lista<T> {
             System.out.println("Elemento nao existe no array");
             e.printStackTrace();
         }
+    }
+
+    public void dequeue() {
+        cont--;
     }
 
     public int ultimoIndice() {
