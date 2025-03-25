@@ -1,10 +1,10 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.Arrays.test;
 
-import PROGRAMAS_EM_JAVA.EstruturaDeDados.Arrays.domain.Array;
+import PROGRAMAS_EM_JAVA.EstruturaDeDados.Arrays.domain.VetorJava;
 
 public class ArrayTest {
     public static void main(String[] args) throws Exception {
-        Array a = new Array();
+        VetorJava a = new VetorJava();
 
         a.inserirElemento(1);
         a.inserirElemento(2);

@@ -1,16 +1,23 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.Arrays.domain;
 
-public class Array {
-    private Integer[] a;
+import java.lang.reflect.Array;
+
+public class Lista<T> {
+    private T[] a; //generalizaçao de tipo de variavel.
     private final int MAX = 5;
     public int cont;
 
-    public Array() {
-        a = new Integer[MAX];
+    public Lista(Class<T> tipoClasse) {
+        a = (T[])Array.newInstance(tipoClasse,MAX);
         cont = 0;
     }
 
-    public void inserirElemento(int data) {
+    public Lista() {
+        a = (T[]) new Object[MAX];
+        cont = 0;
+    }
+
+    public void inserirElemento(T data) {
         try{
             a[cont] = data;
             cont++;
@@ -62,14 +69,14 @@ public class Array {
         }
     }
 
-    public boolean existeElemento(int data) {
+    public boolean existeElemento(T data) {
         for(int i = 0; i<cont; i++) {
             if(a[i].equals(data)) return true;
         }
         return false;
     }
 
-    public void adicionaDeterminadaPosicao(int data, int posicao) throws Exception {
+    public void adicionaDeterminadaPosicao(T data, int posicao) throws Exception {
         if(posicao > MAX && cont == MAX && posicao<0) {
             throw new Exception("Posição invalida, ou não ha espaço no array");
         }
@@ -83,10 +90,10 @@ public class Array {
 
     }
 
-    public void removerElemento(int data) {
+    public void removerElemento(T data) {
         try{
             for(int i = 0; i<cont; i++) {
-                if(a[i] == data) {
+                if(a[i].equals(data)) {
                     a[i] = a[i+1];
                     cont--;
                     return;
