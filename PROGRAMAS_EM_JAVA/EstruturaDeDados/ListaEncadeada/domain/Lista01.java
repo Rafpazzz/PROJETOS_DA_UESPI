@@ -6,7 +6,7 @@ public class Lista01<T> {
     private int cont;
 
     public void add(T elemento) {
-        No<T> celula = new No<T>(elemento);
+        No<T> celula = new No<>(elemento);
         if(cont == 0){
             this.inicio = celula;
         }else {

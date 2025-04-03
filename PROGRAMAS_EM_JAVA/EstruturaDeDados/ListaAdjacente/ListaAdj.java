@@ -1,4 +1,4 @@
-package PROGRAMAS_EM_JAVA.EstruturaDeDados;
+package PROGRAMAS_EM_JAVA.EstruturaDeDados.ListaAdjacente;
 
 import java.util.*;
 
