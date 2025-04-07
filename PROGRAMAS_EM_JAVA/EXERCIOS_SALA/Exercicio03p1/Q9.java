@@ -1,4 +1,4 @@
-package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03p1;
+package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio03p1;
 
 public class Q9 {
     public static void main(String args[]) {

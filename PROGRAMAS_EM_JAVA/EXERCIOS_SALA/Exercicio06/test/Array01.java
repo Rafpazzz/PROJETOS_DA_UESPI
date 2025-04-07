@@ -1,4 +1,4 @@
-package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico06.test;
+package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio06.test;
 
 public class Array01 {
     public static void main(String[] args) {

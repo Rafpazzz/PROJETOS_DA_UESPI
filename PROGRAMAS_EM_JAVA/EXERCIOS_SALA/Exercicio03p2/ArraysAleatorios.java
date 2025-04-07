@@ -1,4 +1,4 @@
-package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercico03p2;
+package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio03p2;
 
 public class ArraysAleatorios{
     public static void main(String[] args) {
