@@ -1,11 +1,11 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.ALgoritimosDeMenorCaminho.domain;
 
-public class Graph {
+public class GraphDijkitra {
     private int[][] matrisAdj;
     private String[] verticeDado;
     private int size;
 
-    public Graph(int tam) {
+    public GraphDijkitra(int tam) {
         matrisAdj = new int[tam][tam];
         verticeDado = new String[tam];
         size = tam;

@@ -1,10 +1,10 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.ALgoritimosDeMenorCaminho.test;
 
-import PROGRAMAS_EM_JAVA.EstruturaDeDados.ALgoritimosDeMenorCaminho.domain.Graph;
+import PROGRAMAS_EM_JAVA.EstruturaDeDados.ALgoritimosDeMenorCaminho.domain.GraphDijkitra;
 
 public class AlgoritimoDijkitra {
     public static void main(String[] args) {
-        Graph g1 = new Graph(7);
+        GraphDijkitra g1 = new GraphDijkitra(7);
 
         g1.addVertice(0, "A");
         g1.addVertice(1, "B");
