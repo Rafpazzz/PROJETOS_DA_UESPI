@@ -35,9 +35,9 @@ class ListaAdjacente {
         }
     }
 
-    public void inserirValor(int v1, int v2) { 
+    public void inserirValor(int v1, int v2) {
         listAdj[v1].add(v2);
-        listAdj[v2].add(v1);
+        listAdj[v2].add(v1); //comentar esta linha se o grafo for direcional.
         numArestas++;
 
     }
