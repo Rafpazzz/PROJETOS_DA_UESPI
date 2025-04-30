@@ -1,8 +1,9 @@
 package PROGRAMAS_EM_JAVA.EXERCIOS_SALA.Exercicio08_1;
 
-public class Ponto {
+public class Ponto implements PrimitivaGrafica {
     private double x;
     private double y;
+    private int e;
 
     public Ponto() {
         x = 1;
@@ -58,4 +59,20 @@ public class Ponto {
         y = y+newDy;
     }
 
+    @Override
+    public double area() {
+        double a, b,c;
+        a = x*y;
+        return a;
+    }
+
+    @Override
+    public void setEspessura(int e) {
+        this.e = e;
+    }
+
+    @Override
+    public String getNome() {
+        return "Quadrado";
+    }
 }
