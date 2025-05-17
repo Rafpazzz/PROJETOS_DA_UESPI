@@ -1,5 +1,7 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.Graph;
 
+import java.util.Scanner;
+
 public class Graph {
     private int[][] matrisAdj;
     private String[] verticeDado;
@@ -38,5 +40,9 @@ public class Graph {
 
     public int[][] getMatrisAdj() {
         return matrisAdj;
+    }
+
+    public String[] getVerticeDado() {
+        return verticeDado;
     }
 }

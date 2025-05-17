@@ -16,10 +16,19 @@ public class MenorCaminhoDirecionado {
         }
     }
 
-    public void adicionarAresta(int vertice, int vizinho) {
-        adjacentes[vertice].add(vizinho);
-        adjacentes[vizinho].add(vertice);
+    public void adicionarAresta(int [][] matrix) {
+        for(int i = 0; i<vertices; i++) {
+            for(int j = i+1; j<vertices; j++) {
+                if(matrix[i][j] == 1) {
+                    adjacentes[i].add(j);
+                    adjacentes[j].add(i);
+                }
+            }
+        }
+
     }
+
+
 
     public LinkedList<Integer> getAdjacentes(int vertice) {
         return adjacentes[vertice];
@@ -32,9 +41,11 @@ public class MenorCaminhoDirecionado {
         fila.add(inicio);
         visitados.add(inicio);
 
+        System.out.print("Vertice visitado a partir do indide " + inicio + ": ");
+
         while (!fila.isEmpty()) {
             int vertice = fila.poll();
-            System.out.println("Visitando: " + vertice);
+            System.out.print(vertice);
 
             for (int vizinho : grafo.getAdjacentes(vertice)) {
                 if (!visitados.contains(vizinho)) {

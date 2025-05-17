@@ -1,37 +1,40 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.MenorCaminho;
 
+import java.util.Scanner;
+
 public class GrafoMenorCaminhoNãoDirecionadoPonderado {
     private int[][] matrisAdj;
-    private String[] verticeDado;
     private int size;
+    private int peso;
+    Scanner r = new Scanner(System.in);
 
-    public GrafoMenorCaminhoNãoDirecionadoPonderado(int tam) {
-        matrisAdj = new int[tam][tam];
-        verticeDado = new String[tam];
+    public GrafoMenorCaminhoNãoDirecionadoPonderado(int tam, int [][] matrix) {
+        matrisAdj = matrix;
         size = tam;
     }
 
-    public void addVertice(int vetice, String dado) {
-        if (vetice >= 0 && vetice < size) {
-            this.verticeDado[vetice] = dado;
+    public void addElemento(int[][] matrix) {
+        for(int i = 0; i<size; i++) {
+            for(int j = i+1; j<size; j++) {
+                if(matrix[i][j] == 1) {
+                    System.out.println("Informe o peso da ligação dos vertices "+ i+ " e " + j);
+                    peso = r.nextInt();
+                    setPeso(peso);
+                    matrisAdj[i][j] = peso;
+                    matrisAdj[j][i] = peso;
+                }
+            }
         }
     }
 
-    public void addElemento(int u, int v, int peso) {
-        if (u < size && v < size && u >= 0 && v >= 0) {
-            matrisAdj[u][v] = peso;
-        }
-    }
-
-    public int[] dijkitra(String verticeInicio) {
-        int inicio = retornaIndice(verticeInicio);
+    public int[] dijkitra(int verticeInicio) {
         int[] distancias = new int[size];
         boolean[] visitado = new boolean[size];
 
         for (int i = 0; i < size; i++) {
             distancias[i] = Integer.MAX_VALUE;
         }
-        distancias[inicio] = 0;
+        distancias[verticeInicio] = 0;
 
         for (int i = 0; i < size; i++) {
             int u = distanciaMin(distancias, visitado);
@@ -50,15 +53,6 @@ public class GrafoMenorCaminhoNãoDirecionadoPonderado {
         return distancias;
     }
 
-    private int retornaIndice(String data) {
-        for (int i = 0; i < size; i++) {
-            if (verticeDado[i].equals(data)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     private int distanciaMin(int[] distancia, boolean[] visitado) {
         int min = Integer.MAX_VALUE, minIndex = -1;
 
@@ -72,7 +66,7 @@ public class GrafoMenorCaminhoNãoDirecionadoPonderado {
         return minIndex;
     }
 
-    public String getVerticeDado(int index) {
-        return verticeDado[index];
+    public void setPeso(int peso) {
+        this.peso = peso;
     }
 }
