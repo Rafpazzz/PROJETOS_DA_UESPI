@@ -1,6 +1,10 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.Menu;
 
 
+import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.ArvoreGeradora.Delete_Reverse;
+import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.ArvoreGeradora.Kruskal;
+import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.ArvoreGeradora.OrdenaMaiorMenor;
+import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.ArvoreGeradora.Prim;
 import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.Graph.Graph;
 import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.ListAdj.ListAdjDirecionada;
 import PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.ListAdj.ListAdjNaoDirecionada;
@@ -13,13 +17,14 @@ import java.util.Scanner;
 
 public class MenuLista {
     public static void main(String[] args) {
+        String [] names = {"A","B", "C", "D", "E", "F", "G"};
         int[][] graph = Graph();
         int size = graph.length;
         int escolha1;
         Scanner r = new Scanner(System.in);
 
         do {
-            System.out.println("");
+            System.out.println(" ");
             System.out.println("========================");
             System.out.println("Escolha uma das opções abaixo:");
             System.out.println("[1].Lista de adjacência de grafos direcionados");
@@ -59,9 +64,9 @@ public class MenuLista {
                 case 4:
                     GrafoMenorCaminhoDirecionadoPonderado grafoMenorCaminhoDirecionadoPonderado = new GrafoMenorCaminhoDirecionadoPonderado(size, graph);
                     grafoMenorCaminhoDirecionadoPonderado.addElemento(graph);
-                    int [] distancias = grafoMenorCaminhoDirecionadoPonderado.dijkitra(0);
-                    for(int i = 0; i<size; i++) {
-                        System.out.println("A distancia de A para " + i +" : " + distancias[i]);
+                    int[] distancias = grafoMenorCaminhoDirecionadoPonderado.dijkitra(0);
+                    for (int i = 0; i < size; i++) {
+                        System.out.println("A distancia de A para " + i + " : " + distancias[i]);
                     }
                     break;
 
@@ -74,14 +79,42 @@ public class MenuLista {
                 case 6:
                     GrafoMenorCaminhoNãoDirecionadoPonderado grafoMenorCaminhoNãoDirecionadoPonderado = new GrafoMenorCaminhoNãoDirecionadoPonderado(size, graph);
                     grafoMenorCaminhoNãoDirecionadoPonderado.addElemento(graph);
-                    int [] distances = grafoMenorCaminhoNãoDirecionadoPonderado.dijkitra(0);
-                    for(int i = 0; i<size; i++) {
-                        System.out.println("A distancia de A para " + i +" : " + distances[i]);
+                    int[] distances = grafoMenorCaminhoNãoDirecionadoPonderado.dijkitra(0);
+                    for (int i = 0; i < size; i++) {
+                        System.out.println("A distancia de A para " + i + " : " + distances[i]);
                     }
                     break;
 
+                case 7:
+                    Kruskal kruskal = new Kruskal(size,names);
+                    kruskal.addEdge(graph);
+                    kruskal.KruskalMST();
+                    break;
+
+                case 8:
+                    Prim prim = new Prim(graph,names);
+                    prim.primsAlgorithm();
+                    prim.toString();
+                    break;
+
+                case 9:
+                    Delete_Reverse deleteReverse = new Delete_Reverse(graph, names);
+                    deleteReverse.reverseDeleteMST();
+                    deleteReverse.toString();
+                    break;
+
+                case 10:
+                    OrdenaMaiorMenor ordenaMaiorMenor = new OrdenaMaiorMenor(graph, names);
+                    ordenaMaiorMenor.sortEdgesAscending();
+                    System.out.println("Oredem crescente:");
+                    ordenaMaiorMenor.toString();
+                    System.out.println("Ordem decredscente:");
+                    ordenaMaiorMenor.sortEdgesDescending();
+                    ordenaMaiorMenor.toString();
+                    break;
+
                 case 11:
-                    System.out.println("Obg pela particopação");
+                    System.out.println("Obg pela participação");
                     System.exit(-1);
             }
 
@@ -91,60 +124,79 @@ public class MenuLista {
 
     public static int[][] Graph() {
         int escolha1;
-        String vertice, parar = "";
-        int indice, tam, v1, v2;
         Scanner r = new Scanner(System.in);
-        System.out.println("Contrução de um Grafo");
-        System.out.print("Informe o tamanho do seu grafo: ");
-        tam = r.nextInt();
-        Graph graph = new Graph(tam);
+        Graph graph = new Graph(7);
         System.out.println("Adicionando os vertices:");
-        for (int i = 0; i < tam; i++) {
-            System.out.println("Informe o Vertice: ");
-            vertice = r.next();
-            System.out.println("Informe o indece desse vertice: ");
-            indice = r.nextInt();
-            graph.addVertice(indice, vertice);
-        }
+
+        graph.addVertice("A", 0);
+        graph.addVertice("B", 1);
+        graph.addVertice("C", 2);
+        graph.addVertice("D", 3);
+        graph.addVertice("E", 4);
+        graph.addVertice("F", 5);
+        graph.addVertice("G", 6);
+
         System.out.println("Informe qual grafo ira trablhar");
         System.out.println("[1].Direcionado");
         System.out.println("[2].Não Direcionado");
+        System.out.println("[3].Direcionado Ponderado");
+        System.out.println("[4].Não Direcionado Ponderado");
         escolha1 = r.nextInt();
 
 
         switch (escolha1) {
             case 1:
-                System.out.println("Adicionando as ligações: ");
-                while (!parar.equals("sim")) {
-                    System.out.print("Informe o vertice 1: ");
-                    v1 = r.nextInt();
-                    System.out.print("Informe o vertice 2: ");
-                    v2 = r.nextInt();
-                    r.nextLine();
-                    graph.graphDirecionado(v1, v2);
-                    System.out.print("Deseja parar de fazer ligações? ");
-                    parar = r.nextLine();
-                }
+                System.out.println("Adicionando as ligações");
+                graph.graphDirecionado(0,1);
+                graph.graphDirecionado(0,3);
+                graph.graphDirecionado(1,2);
+                graph.graphDirecionado(2,6);
+                graph.graphDirecionado(3,1);
+                graph.graphDirecionado(3,4);
+                graph.graphDirecionado(4,5);
+                graph.graphDirecionado(5,6);
                 break;
 
             case 2:
-                System.out.println("Adicionando as ligações: ");
-                while (!parar.equals("sim")) {
-                    System.out.print("Informe o vertice 1: ");
-                    v1 = r.nextInt();
-                    System.out.print("Informe o vertice 2: ");
-                    v2 = r.nextInt();
-                    r.nextLine();
-                    graph.graphNaoDirecionado(v1, v2);
-
-                    System.out.print("Deseja parar de fazer ligações? ");
-                    parar = r.nextLine();
-                }
+                System.out.println("Adicionando as ligações");
+                graph.graphNaoDirecionado(0,1);
+                graph.graphNaoDirecionado(0,3);
+                graph.graphNaoDirecionado(1,2);
+                graph.graphNaoDirecionado(1,5);
+                graph.graphNaoDirecionado(2,6);
+                graph.graphNaoDirecionado(3,1);
+                graph.graphNaoDirecionado(3,4);
+                graph.graphNaoDirecionado(4,5);
+                graph.graphNaoDirecionado(5,6);
                 break;
 
+            case 3:
+                System.out.println("Adicionando as ligações");
+                graph.graphDirecionadoPonderado(0,1,2);
+                graph.graphDirecionadoPonderado(0,3,3);
+                graph.graphDirecionadoPonderado(1,2,6);
+                graph.graphDirecionadoPonderado(2,6,3);
+                graph.graphDirecionadoPonderado(3,1,1);
+                graph.graphDirecionadoPonderado(3,4,2);
+                graph.graphDirecionadoPonderado(4,5,1);
+                graph.graphDirecionadoPonderado(5,6,4);
+                break;
+
+            case 4:
+                System.out.println("Adicionando as ligações");
+                graph.graphNaoDirecionadoPonderado(0,1,2);
+                graph.graphNaoDirecionadoPonderado(0,3,3);
+                graph.graphNaoDirecionadoPonderado(1,2,6);
+                graph.graphNaoDirecionadoPonderado(1,5,5);
+                graph.graphNaoDirecionadoPonderado(2,6,3);
+                graph.graphNaoDirecionadoPonderado(3,1,1);
+                graph.graphNaoDirecionadoPonderado(3,4,2);
+                graph.graphNaoDirecionadoPonderado(4,5,1);
+                graph.graphNaoDirecionadoPonderado(5,6,4);
+                break;
             default:
                 System.out.println("Escolha errada, ate mais");
-                System.exit(-1);
+                break;
         }
         return graph.getMatrisAdj();
     }

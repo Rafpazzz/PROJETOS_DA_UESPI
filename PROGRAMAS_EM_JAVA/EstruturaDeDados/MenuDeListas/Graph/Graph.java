@@ -19,7 +19,7 @@ public class Graph {
         }
     }
 
-    public void addVertice(int vetice, String dado) {
+    public void addVertice(String dado, int vetice) {
         if (vetice >= 0 && vetice < size) {
             this.verticeDado[vetice] = dado;
         }
@@ -35,6 +35,19 @@ public class Graph {
     public void graphNaoDirecionado(int u, int v) {
         if (u < size && v < size && u >= 0 && v >= 0) {
             matrisAdj[u][v] = 1;
+        }
+    }
+
+    public void graphDirecionadoPonderado(int u, int v, int peso) {
+        if (u < size && v < size && u >= 0 && v >= 0) {
+            matrisAdj[u][v] = peso;
+            matrisAdj[v][u] = 1;
+        }
+    }
+
+    public void graphNaoDirecionadoPonderado(int u, int v, int peso) {
+        if (u < size && v < size && u >= 0 && v >= 0) {
+            matrisAdj[u][v] = peso;
         }
     }
 
