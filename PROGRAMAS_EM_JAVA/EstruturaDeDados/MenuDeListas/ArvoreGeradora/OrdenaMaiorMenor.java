@@ -31,7 +31,7 @@ public class OrdenaMaiorMenor {
         }
     }
 
-    public void sortEdgesAscending() {
+    public void sortEdgesCrescente() {
         edges.sort(Comparator.comparingInt(e -> e.weight));
         System.out.println("Arestas em ordem crescente de peso:");
         for (Edge e : edges) {
@@ -39,7 +39,7 @@ public class OrdenaMaiorMenor {
         }
     }
 
-    public void sortEdgesDescending() {
+    public void sortEdgesDecrescente() {
         edges.sort((e1, e2) -> Integer.compare(e2.weight, e1.weight));
         System.out.println("Arestas em ordem decrescente de peso:");
         for (Edge e : edges) {

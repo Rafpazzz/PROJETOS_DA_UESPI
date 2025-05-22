@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class Prim {
     int size;
     int[][] adjMatrix;
-    boolean[] inMST;
-    int[] keyValues;
-    int[] parents;
+    boolean[] inMST; //verificar se um i pertence a MST
+    int[] keyValues; //armazena o menor peso de aresta para conectar um vértice ainda não incluído à MST
+    int[] parents; //armazena o pai de cada vértice na MST
     String[] vertexData;
 
     public Prim(int[][] matrix, String[] vertexNames) {
@@ -18,6 +18,7 @@ public class Prim {
         this.parents = new int[size];
         this.vertexData = vertexNames.clone();
 
+        //todas as distâncias inicialmente são infinitas e ninguém possui um pai inicialmente
         for (int i = 0; i < size; i++) {
             keyValues[i] = Integer.MAX_VALUE;
             parents[i] = -1;
@@ -53,10 +54,12 @@ public class Prim {
                 System.out.println(vertexData[parents[u]] + "-" + vertexData[u] + "\t" + adjMatrix[u][parents[u]]);
             }
 
+            //atualizar o vizinho de "u"
             for (int v = 0; v < size; v++) {
-                if (adjMatrix[u][v] != 0 && !inMST[v] && adjMatrix[u][v] < keyValues[v]) {
-                    parents[v] = u;
-                    keyValues[v] = adjMatrix[u][v];
+                //verifica quais são os vizinhos do índice "u"
+                if (adjMatrix[u][v] != 0 && !inMST[v] && adjMatrix[u][v] < keyValues[v])  {
+                    parents[v] = u; // u vira pai de v
+                    keyValues[v] = adjMatrix[u][v]; //atualiza o custo para chegar no índice representado por "v"
                 }
             }
         }

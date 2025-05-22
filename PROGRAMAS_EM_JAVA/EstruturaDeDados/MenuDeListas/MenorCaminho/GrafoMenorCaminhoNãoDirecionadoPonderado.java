@@ -17,11 +17,7 @@ public class GrafoMenorCaminhoNãoDirecionadoPonderado {
         for(int i = 0; i<size; i++) {
             for(int j = i+1; j<size; j++) {
                 if(matrix[i][j] == 1) {
-                    System.out.println("Informe o peso da ligação dos vertices "+ i+ " e " + j);
-                    peso = r.nextInt();
-                    setPeso(peso);
-                    matrisAdj[i][j] = peso;
-                    matrisAdj[j][i] = peso;
+                    matrisAdj[i][j] = matrix[i][j];
                 }
             }
         }

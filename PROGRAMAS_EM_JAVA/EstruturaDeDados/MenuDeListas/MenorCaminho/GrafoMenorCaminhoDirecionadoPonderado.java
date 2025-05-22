@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class GrafoMenorCaminhoDirecionadoPonderado {
     private int[][] matrisAdj;
     private int size;
-    private int peso;
     Scanner r = new Scanner(System.in);
 
     public GrafoMenorCaminhoDirecionadoPonderado(int tam, int matrix[][]) {
@@ -17,11 +16,8 @@ public class GrafoMenorCaminhoDirecionadoPonderado {
         for(int i = 0; i<size; i++) {
             for(int j = i+1; j<size; j++) {
                 if(matrix[i][j] == 1) {
-                    System.out.println("Informe o peso da ligação dos vertices "+ i+ " e " + j);
-                    peso = r.nextInt();
-                    setPeso(peso);
-                    matrisAdj[i][j] = peso;
-                    matrisAdj[j][i] = peso;
+                    matrisAdj[i][j] = matrix[i][j];
+                    matrisAdj[j][i] = matrix[j][i];
                 }
             }
         }
@@ -64,9 +60,5 @@ public class GrafoMenorCaminhoDirecionadoPonderado {
         }
 
         return minIndex;
-    }
-
-    public void setPeso(int peso) {
-        this.peso = peso;
     }
 }

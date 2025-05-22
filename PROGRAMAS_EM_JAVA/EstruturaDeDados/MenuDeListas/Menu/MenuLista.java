@@ -105,20 +105,20 @@ public class MenuLista {
 
                 case 10:
                     OrdenaMaiorMenor ordenaMaiorMenor = new OrdenaMaiorMenor(graph, names);
-                    ordenaMaiorMenor.sortEdgesAscending();
-                    System.out.println("Oredem crescente:");
-                    ordenaMaiorMenor.toString();
-                    System.out.println("Ordem decredscente:");
-                    ordenaMaiorMenor.sortEdgesDescending();
-                    ordenaMaiorMenor.toString();
+                    ordenaMaiorMenor.sortEdgesCrescente();
+                    System.out.println("======================");
+                    ordenaMaiorMenor.sortEdgesDecrescente();
                     break;
 
                 case 11:
                     System.out.println("Obg pela participação");
                     System.exit(-1);
+
+                default:
+                    System.out.println("Escolha um das opções validas");
             }
 
-        } while (escolha1 <= 11);
+        } while (escolha1 != 11);
 
     }
 
@@ -141,6 +141,7 @@ public class MenuLista {
         System.out.println("[2].Não Direcionado");
         System.out.println("[3].Direcionado Ponderado");
         System.out.println("[4].Não Direcionado Ponderado");
+        System.out.print("Escolha: ");
         escolha1 = r.nextInt();
 
 

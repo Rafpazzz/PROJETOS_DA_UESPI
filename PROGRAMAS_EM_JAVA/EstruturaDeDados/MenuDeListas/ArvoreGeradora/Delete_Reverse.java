@@ -10,23 +10,23 @@ public class Delete_Reverse {
     private String[] vertexNames;
 
     class Edge implements Comparable<Edge> {
-        int u, v, w;
+        int u, v, wength;
 
-        Edge(int u, int v, int w) {
+        Edge(int u, int v, int wength) {
             this.u = u;
             this.v = v;
-            this.w = w;
+            this.wength = wength;
         }
 
         public int compareTo(Edge other) {
-            return this.w - other.w;
+            return this.wength - other.wength;
         }
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") //nao mostrar a mensagem de warning no compilador, devido o compilador nao garantir a segurança de tipos genericos
     public Delete_Reverse(int[][] matrix, String[] vertexNames) {
         this.V = matrix.length;
-        this.adj = new ArrayList[V];
+        this.adj = new ArrayList[V]; //criando uma lista de valores generics, ou seja, aqui pode entrar qualquer valor
         this.edges = new ArrayList<>();
         this.vertexNames = vertexNames.clone();
 
@@ -45,6 +45,7 @@ public class Delete_Reverse {
         }
     }
 
+    //marca todos os vertices a partir de "v" como true, somente aqueles que é possivel ser visitado
     private void DFS(int v, boolean[] visited) {
         visited[v] = true;
         for (int i : adj[v]) {
@@ -54,6 +55,7 @@ public class Delete_Reverse {
         }
     }
 
+    //verifica se o grafo está conexo ou não
     private boolean isConnected() {
         boolean[] visited = new boolean[V];
         DFS(0, visited);
@@ -64,7 +66,7 @@ public class Delete_Reverse {
     }
 
     public void reverseDeleteMST() {
-        Collections.sort(edges); // sort by weight
+        Collections.sort(edges); // ordencação dos pesos ordem crescente
         int mstWeight = 0;
 
         System.out.println("Arestas da AGM (Reverse-Delete):");
@@ -79,8 +81,8 @@ public class Delete_Reverse {
             if (!isConnected()) {
                 adj[u].add(v);
                 adj[v].add(u);
-                System.out.println(vertexNames[u] + " - " + vertexNames[v] + "\t" + e.w);
-                mstWeight += e.w;
+                System.out.println(vertexNames[u] + " - " + vertexNames[v] + "\t" + e.wength);
+                mstWeight += e.wength;
             }
         }
 
