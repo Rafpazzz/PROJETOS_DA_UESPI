@@ -2,13 +2,12 @@ package PROGRAMAS_EM_JAVA.EstruturaDeDados.MenuDeListas.MenorCaminho;
 
 import java.util.Scanner;
 
-public class GrafoMenorCaminhoNãoDirecionadoPonderado {
+public class GrafoMenorCaminhoNaoDirecionadoPonderado {
     private int[][] matrisAdj;
     private int size;
-    private int peso;
     Scanner r = new Scanner(System.in);
 
-    public GrafoMenorCaminhoNãoDirecionadoPonderado(int tam, int [][] matrix) {
+    public GrafoMenorCaminhoNaoDirecionadoPonderado(int tam, int matrix[][]) {
         matrisAdj = matrix;
         size = tam;
     }
@@ -18,6 +17,7 @@ public class GrafoMenorCaminhoNãoDirecionadoPonderado {
             for(int j = i+1; j<size; j++) {
                 if(matrix[i][j] == 1) {
                     matrisAdj[i][j] = matrix[i][j];
+                    matrisAdj[j][i] = matrix[j][i];
                 }
             }
         }
@@ -60,9 +60,5 @@ public class GrafoMenorCaminhoNãoDirecionadoPonderado {
         }
 
         return minIndex;
-    }
-
-    public void setPeso(int peso) {
-        this.peso = peso;
     }
 }
