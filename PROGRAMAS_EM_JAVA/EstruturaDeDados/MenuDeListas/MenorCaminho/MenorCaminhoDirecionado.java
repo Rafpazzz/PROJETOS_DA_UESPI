@@ -18,17 +18,13 @@ public class MenorCaminhoDirecionado {
 
     public void adicionarAresta(int [][] matrix) {
         for(int i = 0; i<vertices; i++) {
-            for(int j = i+1; j<vertices; j++) {
+            for(int j = 0; j<vertices; j++) {
                 if(matrix[i][j] == 1) {
                     adjacentes[i].add(j);
-                    adjacentes[j].add(i);
                 }
             }
         }
-
     }
-
-
 
     public LinkedList<Integer> getAdjacentes(int vertice) {
         return adjacentes[vertice];

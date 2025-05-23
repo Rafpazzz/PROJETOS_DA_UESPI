@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class MenorCaminhoNãoDirecionado {
+public class MenorNaoCaminhoDirecionado {
     private int vertices;
     private LinkedList<Integer>[] adjacentes;
 
-    public MenorCaminhoNãoDirecionado(int vertices) {
+    public MenorNaoCaminhoDirecionado(int vertices) {
         this.vertices = vertices;
         adjacentes = new LinkedList[vertices];
         for (int i = 0; i < vertices; i++) {
@@ -21,16 +21,20 @@ public class MenorCaminhoNãoDirecionado {
             for(int j = i+1; j<vertices; j++) {
                 if(matrix[i][j] == 1) {
                     adjacentes[i].add(j);
+                    adjacentes[j].add(i);
                 }
             }
         }
+
     }
+
+
 
     public LinkedList<Integer> getAdjacentes(int vertice) {
         return adjacentes[vertice];
     }
 
-    public void bfs(MenorCaminhoNãoDirecionado grafo, int inicio) {
+    public void bfs(MenorNaoCaminhoDirecionado grafo, int inicio) {
         Queue<Integer> fila = new LinkedList<>();
         HashSet<Integer> visitados = new HashSet<>();
 
