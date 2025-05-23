@@ -37,7 +37,8 @@ public class MenuLista {
             System.out.println("[8].Arvore geradora mínima - Prim");
             System.out.println("[9].Arvore geradora mínima - ApagaReservo");
             System.out.println("[10].Ordenação de arestas por peso (crescente e decrescente)");
-            System.out.println("[11].Sair do menu");
+            System.out.println("[11].Escolhar outro grafo");
+            System.out.println("[12].Sair do menu");
             System.out.print("Escolha: ");
             escolha1 = r.nextInt();
 
@@ -111,6 +112,11 @@ public class MenuLista {
                     break;
 
                 case 11:
+                    graph = Graph();
+                    size = graph.length;
+                    break;
+
+                case 12:
                     System.out.println("Obg pela participação");
                     System.exit(-1);
 
@@ -118,7 +124,7 @@ public class MenuLista {
                     System.out.println("Escolha um das opções validas");
             }
 
-        } while (escolha1 != 11);
+        } while (escolha1 != 12);
 
     }
 
@@ -151,6 +157,7 @@ public class MenuLista {
                 graph.graphDirecionado(0,1);
                 graph.graphDirecionado(0,3);
                 graph.graphDirecionado(1,2);
+                graph.graphDirecionado(1,5);
                 graph.graphDirecionado(2,6);
                 graph.graphDirecionado(3,1);
                 graph.graphDirecionado(3,4);
@@ -176,6 +183,7 @@ public class MenuLista {
                 graph.graphDirecionadoPonderado(0,1,2);
                 graph.graphDirecionadoPonderado(0,3,3);
                 graph.graphDirecionadoPonderado(1,2,6);
+                graph.graphDirecionadoPonderado(1,5,5);
                 graph.graphDirecionadoPonderado(2,6,3);
                 graph.graphDirecionadoPonderado(3,1,1);
                 graph.graphDirecionadoPonderado(3,4,2);
