@@ -73,7 +73,7 @@ public class Kruskal {
         List<Edge> result = new ArrayList<>();
         Collections.sort(edges); //ordenar a aresta pelo peso
 
-        //Cada vértice começa como seu próprio conjunto (pai de si mesmo)
+        //Cada vértice começa como o seu próprio conjunto (pai de si mesmo)
         Subset[] subsets = new Subset[V];
         for (int v = 0; v < V; ++v) {
             subsets[v] = new Subset();
