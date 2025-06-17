@@ -1,6 +1,6 @@
 package PROGRAMAS_EM_JAVA.EstruturaDeDados.TrabalhoMenu2.BinaryTree;
 
-class TreeNode{
+class TreeNode {
     public TreeNode left, right;
     public int value;
 
@@ -18,14 +18,14 @@ public class Tree {
 
     }
 
-    private TreeNode inserirRec(TreeNode node , int value) {
-        if(node == null) {
+    private TreeNode inserirRec(TreeNode node, int value) {
+        if (node == null) {
             return new TreeNode(value);
         }
 
-        if(value > node.value) {
+        if (value > node.value) {
             node.right = inserirRec(node.right, value);
-        }else if(value <= node.value) {
+        } else if (value <= node.value) {
             node.left = inserirRec(node.left, value);
         }
 
@@ -40,32 +40,32 @@ public class Tree {
         TreeNode min = node.right;
         TreeNode pai = node;
 
-        while(min.left != null) {
+        while (min.left != null) {
             pai = min;
             min = min.left;
         }
-        if(pai.left == min) {
+        if (pai.left == min) {
             pai.left = min.right;
-        }else pai.right = min.right;
+        } else pai.right = min.right;
 
         node.value = min.value;
 
     }
 
-    private TreeNode removerRec(int value,TreeNode node) {
-        if(node == null) {
+    private TreeNode removerRec(int value, TreeNode node) {
+        if (node == null) {
             return null;
         }
 
-        if(value < node.value) {
+        if (value < node.value) {
             node.left = removerRec(value, node.left);
-        }else if(value > node.value) {
+        } else if (value > node.value) {
             node.right = removerRec(value, node.right);
-        }else if(node.left == null) {
+        } else if (node.left == null) {
             return node.right;
-        }else if(node.right == null) {
-            return  node.left;
-        }else remover_sucessor(node);
+        } else if (node.right == null) {
+            return node.left;
+        } else remover_sucessor(node);
 
         return node;
     }
@@ -76,7 +76,7 @@ public class Tree {
     }
 
     private void preOndemRec(TreeNode node) {
-        if(node != null) {
+        if (node != null) {
             System.out.print(node.value + " ");
             preOndemRec(node.left);
             preOndemRec(node.right);
@@ -90,7 +90,7 @@ public class Tree {
     }
 
     private void emOrdemRec(TreeNode node) {
-        if(node != null) {
+        if (node != null) {
             preOndemRec(node.left);
             System.out.print(node.value + " ");
             preOndemRec(node.right);
@@ -103,7 +103,7 @@ public class Tree {
     }
 
     private void posOrdeRec(TreeNode node) {
-        if(node != null) {
+        if (node != null) {
             posOrdeRec(node.left);
             posOrdeRec(node.right);
             System.out.print(node.value + " ");

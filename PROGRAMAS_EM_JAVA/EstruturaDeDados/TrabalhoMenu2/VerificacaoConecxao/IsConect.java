@@ -11,16 +11,16 @@ public class IsConect {
         }
     }
 
-    public boolean isConexo(int [][] matrix, int size ) {
+    public String isConexo(int [][] matrix, int size ) {
         boolean[] visitado = new boolean[size];
         dfs(0, matrix, visitado);
 
         //retorna se encontrar um vertice desconexo.
         for(boolean v : visitado) {
-            if(!v) return true;
+            if(!v) return "Há vertice desconexo";
         }
 
         //retorna se não encontra vertice desconexo.
-        return false;
+        return "Não há vetice desconexo";
     }
 }
