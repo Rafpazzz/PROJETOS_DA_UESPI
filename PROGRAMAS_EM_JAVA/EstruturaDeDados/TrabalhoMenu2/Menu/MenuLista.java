@@ -102,7 +102,7 @@ public class MenuLista {
     public static int[][] Graph() {
         int escolha1;
         Scanner r = new Scanner(System.in);
-        Graph graph = new Graph(7);
+        Graph graph = new Graph(9);
         System.out.println("Adicionando os vertices:");
 
         graph.addVertice("A", 0);
