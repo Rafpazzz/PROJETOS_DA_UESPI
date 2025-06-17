@@ -70,14 +70,14 @@ public class MenuLista {
                     break;
 
                 case 8:
-                    System.out.println("Insira Qual nó deseja remover: ");
+                    System.out.println("Digite qual nó deseja remover: ");
                     int valor = r.nextInt();
                     r.nextLine();
                     arvoreBinaria.remover(valor);
                     break;
 
                 case 9:
-                    System.out.print("Insira Qual nó deseja remover: ");
+                    System.out.print("Digite o nó que deseja inserir: ");
                     int valorInserir = r.nextInt();
                     r.nextLine();
                     arvoreBinaria.inserir(valorInserir);
