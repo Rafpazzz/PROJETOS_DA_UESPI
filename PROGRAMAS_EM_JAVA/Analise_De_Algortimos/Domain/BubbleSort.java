@@ -1,21 +1,26 @@
-package PROGRAMAS_EM_JAVA.Analise_De_Algortimos.Domain;
+package domain;
 
 public class BubbleSort {
-    //Ordena os dados do menor valor ate o maior valor
 
-    public void bubble(int[] arr) {
-        int len = arr.length;
+    public void bubbleSort(int[] arr, Resultado r) {
+        int n = arr.length;
 
-        for(int i = 0; i< len -1; i++) {
-            for(int j = 0; j < len-i-1; j++) {
-                if(arr[j] > arr[i]) {
-                    int temp = arr[i];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+
+                r.addComparacao(); // comparação arr[j] > arr[j+1]
+
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    r.addAtribuicao();
+
+                    arr[j] = arr[j + 1];
+                    r.addAtribuicao();
+
+                    arr[j + 1] = temp;
+                    r.addAtribuicao();
                 }
             }
         }
-
     }
-
 }

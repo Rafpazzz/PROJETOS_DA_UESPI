@@ -1,21 +1,32 @@
-package PROGRAMAS_EM_JAVA.Analise_De_Algortimos.Domain;
+package domain;
 
 public class SelectionSort {
 
-    public void selectionSort(int[] arr) {
-        int len = arr.length;
+    public void selectionSort(int[] arr, Resultado r) {
+        int n = arr.length;
 
-        for (int i = 0; i< len; i++) {
-            int min_index = i;
-            for (int j = i +1; j < len; j++) {
-                if (arr[j] < arr[min_index]) {
-                    min_index = j;
+        for (int i = 0; i < n - 1; i++) {
+
+            int minIndex = i;
+
+            for (int j = i + 1; j < n; j++) {
+
+                r.addComparacao(); // arr[j] < arr[minIndex]
+
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
                 }
             }
 
+            // troca
             int temp = arr[i];
-            arr[i] = arr[min_index];
-            arr[min_index]= temp;
+            r.addAtribuicao();
+
+            arr[i] = arr[minIndex];
+            r.addAtribuicao();
+
+            arr[minIndex] = temp;
+            r.addAtribuicao();
         }
     }
 }
