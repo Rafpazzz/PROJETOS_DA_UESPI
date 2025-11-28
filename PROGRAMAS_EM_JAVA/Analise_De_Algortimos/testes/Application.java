@@ -1,7 +1,7 @@
-package testes;
+package PROGRAMAS_EM_JAVA.Analise_De_Algortimos.testes;
 
-import domain.*;
-import utils.*;
+import PROGRAMAS_EM_JAVA.Analise_De_Algortimos.domain.*;
+import PROGRAMAS_EM_JAVA.Analise_De_Algortimos.utils.*;
 
 public class Application {
 
