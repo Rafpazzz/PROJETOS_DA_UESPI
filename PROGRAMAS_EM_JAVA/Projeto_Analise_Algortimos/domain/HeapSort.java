@@ -1,4 +1,4 @@
-package domain;
+package PROGRAMAS_EM_JAVA.Projeto_Analise_Algortimos.domain;
 
 public class HeapSort {
 

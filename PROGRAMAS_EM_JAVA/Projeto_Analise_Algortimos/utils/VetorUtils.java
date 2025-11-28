@@ -1,4 +1,4 @@
-package utils;
+package PROGRAMAS_EM_JAVA.Projeto_Analise_Algortimos.utils;
 
 import java.util.Random;
 

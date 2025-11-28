@@ -1,6 +1,6 @@
-package utils;
+package PROGRAMAS_EM_JAVA.Projeto_Analise_Algortimos.utils;
 
-import domain.Resultado;
+import PROGRAMAS_EM_JAVA.Projeto_Analise_Algortimos.domain.Resultado;
 
 import java.io.FileWriter;
 import java.io.IOException;
