@@ -8,16 +8,14 @@ public class InsertionSort {
         for (int i = 1; i < n; i++) {
             int currentValue = arr[i];
             r.addAtribuicao();
-
             int j = i - 1;
 
             while (j >= 0) {
-                r.addComparacao(); // comparação arr[j] > currentValue
+                r.addComparacao();
 
                 if (arr[j] > currentValue) {
                     arr[j + 1] = arr[j];
                     r.addAtribuicao();
-
                     j--;
                 } else {
                     break;
